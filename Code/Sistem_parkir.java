@@ -17,7 +17,6 @@ public class Sistem_parkir{
 
         //output//
         System.out.println();
-
         System.out.println(null);
     
     }
