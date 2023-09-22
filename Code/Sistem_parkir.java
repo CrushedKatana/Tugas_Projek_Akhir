@@ -7,7 +7,7 @@ public class Sistem_parkir{
         
        //variable// 
         int total_price, parking_price, helmet_storage_price;
-        char name, number_plate, motorcycle_type, helmet;
+        char name, number_plate, stnk, motorcycle_type, helmet;
         double parking_duration, parking_entry_time, parking_exit_hours ;
 
         //formulas//
@@ -16,7 +16,7 @@ public class Sistem_parkir{
 
         //output//
         System.out.println();
-        
+        System.out.println(null);
     
     }
 }
