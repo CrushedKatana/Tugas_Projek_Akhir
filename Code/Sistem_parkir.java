@@ -17,11 +17,8 @@ public class Sistem_parkir{
 
         //output//
         System.out.println();
-<<<<<<< HEAD
-        System.out.println(null);
-=======
 
->>>>>>> 628d49ce81ebfbb7566188fce69708e4e87d9e87
+        System.out.println(null);
     
     }
 }
