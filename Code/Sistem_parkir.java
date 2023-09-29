@@ -5,19 +5,20 @@ public class Sistem_parkir{
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Scanner sc = new Scanner(System.in);
-       //variable// 
+       
+        //variable 
         int total_price, parking_price=2000, helmet_storage_price=1000;
         String name, number_plate, motorcycle_type, input_helmet_drop_off;
         double discount=0.1, puchaseprice, totalPrice, totalDiscount, parking_duration;
 
-        //formulas//
+        //formulas
         totalPrice=parking_price*parking_duration;
         totalDiscount=totalPrice*discount;
         puchaseprice=totalPrice-totalDiscount;
       
 
 
-        //output//
+        //output
         System.out.println("Input name: ");
         name=input.next();
         System.out.println("Input number plate: ");
