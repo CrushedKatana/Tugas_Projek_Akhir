@@ -1,3 +1,4 @@
+import java.time.LocalTime;
 import java.util.Scanner;
 
 public class Sistem_parkir{
@@ -16,14 +17,21 @@ public class Sistem_parkir{
         //variable 
         int total_price, parking_price=2000, helmet_storage_price=1000;
         String name, number_plate, motorcycle_type, input_helmet_drop_off;
-        double discount=0.1, puchaseprice, totalPrice, totalDiscount, parking_duration;
+        double discount=0.1, puchaseprice, totalPrice, price, totalDiscount, parking_duration;
+        LocalTime parkingentrancetime = LocalTime.now(), parkingexithours= LocalTime.now();
 
         //formulas
-        totalPrice=parking_price*parking_duration;
+        price=parking_price*parking_duration;
         totalDiscount=totalPrice*discount;
         puchaseprice=totalPrice-totalDiscount;
+        
        
         //output
+
+        // current time
+        LocalTime currentTime = LocalTime.now();
+        System.out.println("Current time: " + currentTime);
+        
         System.out.println("Input name: ");
         name=input.next();
         System.out.println("Input number plate: ");
