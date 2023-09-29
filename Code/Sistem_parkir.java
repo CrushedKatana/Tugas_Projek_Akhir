@@ -1,10 +1,15 @@
 import java.util.Scanner;
 
 public class Sistem_parkir{
-
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        Scanner sc = new Scanner(System.in);
+       
+        System.out.println("  _____        _____  _  _______ _   _  _____    _______     _______ _______ ______ __  __ ");
+        System.out.println(" |  __ \\ /\\   |  __ \\| |/ /_   _| \\ | |/ ____|  / ____\\ \\   / / ____|__   __|  ____|  \\/  |");
+        System.out.println(" | |__) /  \\  | |__) | ' /  | | |  \\| | |  __  | (___  \\ \\_/ / (___    | |  | |__  | \\  / |");
+        System.out.println(" |  ___/ /\\ \\ |  _  /|  <   | | | . ` | | |_ |  \\___ \\  \\   / \\___ \\   | |  |  __| | |\\/| |");
+        System.out.println(" | |  / ____ \\| | \\ \\| . \\ _| |_| |\\  | |__| |  ____) |  | |  ____) |  | |  | |____| |  | |");
+        System.out.println(" |_| /_/    \\_\\_|  \\_\\_|\\_\\_____|_| \\_|\\_____| |_____/   |_| |_____/   |_|  |______|_|  |_|");
        
         //variable 
         int total_price, parking_price=2000, helmet_storage_price=1000;
@@ -15,9 +20,7 @@ public class Sistem_parkir{
         totalPrice=parking_price*parking_duration;
         totalDiscount=totalPrice*discount;
         puchaseprice=totalPrice-totalDiscount;
-      
-
-
+       
         //output
         System.out.println("Input name: ");
         name=input.next();
