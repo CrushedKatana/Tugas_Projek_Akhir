@@ -14,11 +14,7 @@ public class Sistem_parkir{
         System.out.println(" ");
         System.out.println(" ");
        
-        //variable 
-
-        //int total_price, parking_price=2000, helmet_storage_price=1000;
-        //String name, number_plate, motorcycle_type, input_helmet_drop_off;
-        //double discount=0.1, puchaseprice, totalPrice, totalDiscount, parking_duration;
+        
 
         //VARIABEL MOTORCYCLE
         
