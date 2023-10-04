@@ -1,3 +1,4 @@
+import java.time.LocalTime;
 import java.util.Scanner;
 
 public class Sistem_parkir{
@@ -14,6 +15,7 @@ public class Sistem_parkir{
         System.out.println(" ");
        
         //variable 
+
         //int total_price, parking_price=2000, helmet_storage_price=1000;
         //String name, number_plate, motorcycle_type, input_helmet_drop_off;
         //double discount=0.1, puchaseprice, totalPrice, totalDiscount, parking_duration;
@@ -51,6 +53,8 @@ public class Sistem_parkir{
         hargaparkir = 5000;
         totalharga=(hargaparkir*waktu);
         System.out.println( "total harga " + totalharga);
-    
+
     }
 }
+
+       
