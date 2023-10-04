@@ -20,39 +20,71 @@ public class Sistem_parkir{
         //String name, number_plate, motorcycle_type, input_helmet_drop_off;
         //double discount=0.1, puchaseprice, totalPrice, totalDiscount, parking_duration;
 
-        //formulas
-        //totalPrice=parking_price*parking_duration;
-        //totalDiscount=totalPrice*discount;
-        //puchaseprice=totalPrice-totalDiscount;
+        //VARIABEL MOTORCYCLE
+        
+                double hargatotal, hargaparkirmotorcycle = 2000, lamaparkir, hargatitiphelm = 2000;
+                String namauser, tipesepeda, nomorplat;
+                boolean istitiphelm, ismember;
+        
+              
+        
+                System.out.println("Input nama user");
+                namauser = input.next();
+                System.out.println("Input plat nomor");
+                nomorplat = input.next();
+                System.out.println("Helmet drop off ? (true/false) = ");
+                istitiphelm = input.nextBoolean();
+                System.out.println("Is user a member ? (true/false) = ");
+                ismember = input.nextBoolean();
+                System.out.println("Input lama parkir");
+                lamaparkir = input.nextInt();
+        
+                if (istitiphelm) {
+                    hargatotal = (hargaparkirmotorcycle * lamaparkir) + hargatitiphelm;
+                    System.out.println("Harga penitipan helm: " + hargatitiphelm);
+                } else {
+                    hargatotal = hargaparkirmotorcycle * lamaparkir;
+                }
+        
+                if (ismember) {
+                    // Diskon 10% untuk member
+                    double diskon = hargatotal * 0.1;
+                    hargatotal -= diskon;
+                    System.out.println("Status member: Yes");
+                    System.out.println("Diskon member: " + diskon);
+                } else {
+                    System.out.println("Status member: No");
+                }
+                System.out.println("Harga parkir: " + hargaparkirmotorcycle * lamaparkir);
+                System.out.println("Harga total: " + hargatotal);
+            
+        
+                
+            
+        
+        
+
+        
+
+
        
-        //output
-        //System.out.println("Input name: ");
-        //name=input.next();
-        //System.out.println("Input number plate: ");
-        //number_plate=input.next();
-        //System.out.println("Input motorcycle type: ");
-        //motorcycle_type=input.next();
-        //System.out.println("Input helmet drop off: ");
-       // input_helmet_drop_off=input.next();
-        //System.out.println("Input parking duration: ");
-        //parking_duration=input.nextInt();
-        //System.out.println("Input discount: " +totalDiscount);
-        //System.out.println("Final purchase price: " +puchaseprice);
         //VARIABEL CAR
         double totalharga, waktu  ;
         double hargaparkir = 5000;
         String nama_user, platnomor, tipemobil;
-        System.out.println("input nama user");
+        System.out.println("Input nama user");
         nama_user = input.next();
-        System.out.println("input plat nomor");
+        System.out.println("Input plat nomor");
         platnomor = input.next();
-        System.out.println("tipe mobil");
+        System.out.println("Tipe mobil");
         tipemobil = input.next();
-        System.out.println(" waktu");
+        System.out.println(" Waktu");
         waktu = input.nextInt();
         hargaparkir = 5000;
         totalharga=(hargaparkir*waktu);
-        System.out.println( "total harga " + totalharga);
+        System.out.println( "Total harga " + totalharga);
+
+
 
     }
 }
