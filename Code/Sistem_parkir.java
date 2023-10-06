@@ -83,7 +83,7 @@ public class Sistem_parkir{
 
 
         //VARIABLE ELECTRIC VEHICLE
-        double totalPrice, time;
+        double totalPrice, time, chargingtime;
         double electric_carparkingprice=5000, electric_motorcycleparkingprice=2000, chargingprice_kwh=1000;
         String name, cartype, motorcycletype, platenumber, vehicletype;
         boolean iscar, ismotorcycle;
@@ -99,16 +99,16 @@ public class Sistem_parkir{
             case 1:
                 System.out.println("You chose a Electric Car.");
                 System.out.println("Input plate number");
-                platnomor = input.next();
-                System.out.println("Cartype = ");
-                tipemobil = input.next();
+                platenumber = input.next();
+                System.out.println("Car type = ");
+                cartype = input.next();
                 System.out.print("Do you want to charge the car? (yes/no): ");
-                String chose = input.next();
+                String chosecar = input.next();
         
-                if (chose.equalsIgnoreCase("yes")) {
+                if (chosecar.equalsIgnoreCase("yes")) {
                     System.out.println("Go to the car park with the charger");
                     
-                } else if(chose.equalsIgnoreCase("no")){
+                } else if(chosecar.equalsIgnoreCase("no")){
                     System.out.println("Go to the normal car park");
                 }
                 else {
@@ -118,12 +118,28 @@ public class Sistem_parkir{
 
             case 2:
                 System.out.println("You chose a Electric Motorcycle.");
-                
+                 System.out.println("Input plate number");
+                platenumber = input.next();
+                System.out.println("Motorcycle type = ");
+                cartype = input.next();
+                System.out.print("Do you want to charge the car? (yes/no): ");
+                String chosemotorcycle = input.next();
+        
+                if (chosemotorcycle.equalsIgnoreCase("yes")) {
+                    System.out.println("Go to the motorcycle park with the charger");
+                    
+                } else if(chosemotorcycle.equalsIgnoreCase("no")){
+                    System.out.println("Go to the normal motorcycle park");
+                }
+                else {
+                    System.out.println("Invalid choice. Please enter 'yes' to charge or 'no' to not charge.");
+                }
                 break;
             default:
                 System.out.println("Invalid choice. Please choose 1 for Electric Car or 2 for Electric Motorcycle.");
         }
     }
+}
 
        
        
