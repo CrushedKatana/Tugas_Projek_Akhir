@@ -1,6 +1,6 @@
 import java.time.LocalTime;
 
-public class Tesjam {
+public class electric {
     public static void main(String[] args) {
         // Get the current time
         LocalTime currentTime = LocalTime.now();
