@@ -82,7 +82,57 @@ public class Sistem_parkir{
 
 
 
+        //VARIABLE ELECTRIC VEHICLE
+        double totalPrice, time;
+        double electric_carparkingprice=5000, electric_motorcycleparkingprice=2000, chargingprice_kwh=1000;
+        String name, cartype, motorcycletype, platenumber, vehicletype;
+        boolean iscar, ismotorcycle;
+
+        System.out.println("Input name user");
+        name = input.next();
+        System.out.println("Choose a vehicle: ");
+        System.out.println("1. Electric Car");
+        System.out.println("2. Electric Motorcycle");
+        int choice = input.nextInt();
+
+        switch (choice) {
+            case 1:
+                System.out.println("You chose a Electric Car.");
+                System.out.println("Input plate number");
+                platnomor = input.next();
+                System.out.println("Cartype = ");
+                tipemobil = input.next();
+                System.out.print("Do you want to charge the car? (yes/no): ");
+                String chose = input.next();
+        
+                if (chose.equalsIgnoreCase("yes")) {
+                    System.out.println("Go to the car park with the charger");
+                    
+                } else if(chose.equalsIgnoreCase("no")){
+                    System.out.println("Go to the normal car park");
+                }
+                else {
+                    System.out.println("Invalid choice. Please enter 'yes' to charge or 'no' to not charge.");
+                }
+                break;
+
+            case 2:
+                System.out.println("You chose a Electric Motorcycle.");
+                
+                break;
+            default:
+                System.out.println("Invalid choice. Please choose 1 for Electric Car or 2 for Electric Motorcycle.");
+        }
     }
-}
+
+       
+       
+
+
+
+
+
+    
+
 
        
