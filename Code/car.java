@@ -6,9 +6,6 @@ public class car {
          double totalharga , waktu, hargaparkir = 5000,hargacucimobil , tambahangin = 2000;
          boolean ingincucimobil , ingintambahangin, inginmember ; 
          String nama_user, platnomor, tipemobil ;
-         String jenismember = "" ;
-         
-
 
          //sistem pertama
          System.out.println("Input nama user");
@@ -84,7 +81,30 @@ public class car {
         }
     }
 
-// jenis status member 
-   if (statusmember.equals())
+// jenis status member
+String jenismemberparkir = "";
+if (jenismemberparkir.equals("executive")) {
+    // diskon member parkir executive 20%
+     double diskon = totalharga * 0.2;
+    totalharga -= diskon;
+    System.out.println("status member executive");
+    System.out.println("status member executive " + diskon );
+
+} if (jenismemberparkir.equals("premium")) {
+ // diskon member parkir executive 15% 
+double diskon = totalharga * 0.15;
+totalharga -= diskon;
+System.out.println("status premium");
+System.out.println("status member premium " + diskon );
+
+}  if  (jenismemberparkir.equals("reguler")) {
+    // diskon member parkir executive 10%
+    double diskon = totalharga * 0.1;
+    totalharga -= diskon;
+    System.out.println("status member reguler");
+    System.out.println("status member reguler " + diskon );
+}
+
+
         }
 }
