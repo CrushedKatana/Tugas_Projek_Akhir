@@ -5,7 +5,9 @@ public class car {
          //VARIABEL CAR
          double totalharga , waktu, hargaparkir = 5000,hargacucimobil , tambahangin = 2000;
          boolean ingincucimobil , ingintambahangin, inginmember ; 
-         String nama_user, platnomor, tipemobil;
+         String nama_user, platnomor, tipemobil ;
+         String jenismember = "" ;
+         
 
 
          //sistem pertama
@@ -67,14 +69,22 @@ public class car {
             inginmember = input.nextBoolean();
 
             // status dari member
-        System.out.println("input status member (1 =  exsecutive)");
+        if (inginmember) {
+            System.out.println("input status member (1 =  exsecutive) ( 2  = premium) (3= reguler)");
+        int statusmember = input.nextInt();
+        if (statusmember == 1) {
+            System.out.println("executive"); ;
+        } else if (statusmember == 2) {
+            System.out.println("premium");;
+        } else if (statusmember == 3) {
+            System.out.println("reguler");;
+        } else {
+            System.out.println("input tidak valid (gunakan angka 1,2,3)");
+        return;
+        }
+    }
 
-
-
-
-
-
-
-
+// jenis status member 
+   if (statusmember.equals())
         }
 }
