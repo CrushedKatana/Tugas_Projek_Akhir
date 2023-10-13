@@ -2,15 +2,16 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-public class electric {
+
+public class Electric {
     public static void main(String[] args) {
-    Scanner input = new Scanner(System.in);
-        
-        
-    //VARIABLE ELECTRIC VEHICLE
-    double parkingPrice, chargingRate;
-    String name, cartype, motorcycletype, platenumber, vehicletype;
-        
+        Scanner input = new Scanner(System.in);
+
+        // VARIABLES
+        double parkingPrice, chargingRate;
+        String name, cartype = null, motorcycletype = null, platenumber, vehicletype = null;
+        LocalDateTime timeIn = null, timeOut = null, startChargingTime = null, stopChargingTime = null;
+
         System.out.println("Input name user");
         name = input.next();
         System.out.println("Choose a vehicle: ");
@@ -20,40 +21,38 @@ public class electric {
 
         switch (choicetype) {
             case 1:
-                System.out.println("You chose a Electric Car.");
+                System.out.println("You chose an Electric Car.");
                 System.out.println("Input plate number");
                 platenumber = input.next();
-                System.out.println("Car type = ");
+                System.out.print("Car type = ");
                 cartype = input.next();
                 parkingPrice = 5000.00; // Adjust parking price for electric cars
                 chargingRate = 1000.00; // Adjust charging rate for electric cars
-            break;
-                     
+                vehicletype = "Electric Car";
+                break;
+
             case 2:
-                System.out.println("You chose a Electric Motorcycle.");
+                System.out.println("You chose an Electric Motorcycle.");
                 System.out.println("Input plate number");
                 platenumber = input.next();
-                System.out.println("Motorcycle type = ");
+                System.out.print("Motorcycle type = ");
                 motorcycletype = input.next();
                 parkingPrice = 2000.00; // Adjust parking price for electric motorcycles
                 chargingRate = 500.00; // Adjust charging rate for electric motorcycles
-
-            break;
+                vehicletype = "Electric Motorcycle";
+                break;
 
             default:
-            System.out.println("Invalid choice. Please choose 1 for Electric Car or 2 for Electric Motorcycle.");
-            return;
-         }
-
-         System.out.println("Press '1' to record time in, '2' to record time out, '3' to start charging, '4' to stop charging, '5' to calculate cost, or '0' to exit.");
+                System.out.println("Invalid choice. Please choose 1 for Electric Car or 2 for Electric Motorcycle.");
+                return;
+        }
 
         while (true) {
+            System.out.println("Press '1' to record time in, '2' to record time out, '3' to start charging, '4' to stop charging, '5' to calculate cost, or '0' to exit.");
             System.out.print("Enter your choice: ");
             int choice = input.nextInt();
             input.nextLine(); // Consume the newline character
 
-            Object startChargingTime;
-            Object timeIn;
             switch (choice) {
                 case 1:
                     timeIn = LocalDateTime.now();
