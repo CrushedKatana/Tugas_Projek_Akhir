@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class electric {
+public class Electric {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
@@ -26,8 +26,8 @@ public class electric {
                 platenumber = input.next();
                 System.out.print("Car type = ");
                 cartype = input.next();
-                parkingPrice = 5000.00; // Adjust parking price for electric cars
-                chargingRate = 1000.00; // Adjust charging rate for electric cars
+                parkingPrice = 500.00; // Adjust parking price for electric cars
+                chargingRate = 100.00; // Adjust charging rate for electric cars
                 vehicletype = "Electric Car";
                 break;
 
@@ -37,8 +37,8 @@ public class electric {
                 platenumber = input.next();
                 System.out.print("Motorcycle type = ");
                 motorcycletype = input.next();
-                parkingPrice = 2000.00; // Adjust parking price for electric motorcycles
-                chargingRate = 500.00; // Adjust charging rate for electric motorcycles
+                parkingPrice = 200.00; // Adjust parking price for electric motorcycles
+                chargingRate = 50.00; // Adjust charging rate for electric motorcycles
                 vehicletype = "Electric Motorcycle";
                 break;
 
@@ -48,7 +48,7 @@ public class electric {
         }
 
         while (true) {
-            System.out.println("Press '1' to record time in, '2' to record time out, '3' to start charging, '4' to stop charging, '5' to calculate cost, or '0' to exit.");
+            System.out.println("Press '1' to record time in, '2' to record time out, '3' to start charging, '4' to stop charging, '5' to calculate cost, '6' to park only, or '0' to exit.");
             System.out.print("Enter your choice: ");
             int choice = input.nextInt();
             input.nextLine(); // Consume the newline character
@@ -95,10 +95,12 @@ public class electric {
                         long chargingDurationMinutes = calculateDurationMinutes(startChargingTime, stopChargingTime);
                         double chargingCost = calculateCost(chargingDurationMinutes, chargingRate);
 
+                        System.out.println("========================================================");
                         System.out.println("Parking Duration: " + parkingDurationMinutes + " minutes");
                         System.out.println("Parking Cost: Rp" + parkingCost);
                         System.out.println("Charging Duration: " + chargingDurationMinutes + " minutes");
                         System.out.println("Charging Cost: Rp" + chargingCost);
+                        System.out.println("========================================================");
 
                         double totalCost = parkingCost + chargingCost;
                         System.out.println("Total Cost: Rp" + totalCost);
@@ -106,11 +108,24 @@ public class electric {
                         System.out.println("Please record time in, time out, start charging, and stop charging first.");
                     }
                     break;
+                case 6:
+                    if (timeIn != null && timeOut != null) {
+                        long parkingDurationMinutes = calculateDurationMinutes(timeIn, timeOut);
+                        double parkingCost = calculateCost(parkingDurationMinutes, parkingPrice);
+
+                        System.out.println("========================================================");
+                        System.out.println("Parking Duration: " + parkingDurationMinutes + " minutes");
+                        System.out.println("Parking Cost: Rp" + parkingCost);
+                         System.out.println("========================================================");
+                    } else {
+                        System.out.println("Please record time in and time out first.");
+                    }
+                    break;
                 case 0:
                     System.out.println("Exiting the program.");
                     System.exit(0);
                 default:
-                    System.out.println("Invalid choice. Please enter '1', '2', '3', '4', '5', or '0'.");
+                    System.out.println("Invalid choice. Please enter '1', '2', '3', '4', '5', '6', or '0'.");
                     break;
             }
         }
