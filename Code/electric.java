@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class Electric {
+public class electric {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
@@ -68,8 +68,14 @@ public class Electric {
                     break;
                 case 3:
                     if (timeIn != null && timeOut != null) {
-                        startChargingTime = LocalDateTime.now();
-                        System.out.println("Charging started at: " + formatDateTime(startChargingTime));
+                        System.out.print("Start charging? (yes/no): ");
+                        String startChargingConfirmation = input.next();
+                        if (startChargingConfirmation.equalsIgnoreCase("yes")) {
+                            startChargingTime = LocalDateTime.now();
+                            System.out.println("Charging started at: " + formatDateTime(startChargingTime));
+                        } else {
+                            System.out.println("Charging not started.");
+                        }
                     } else {
                         System.out.println("Please record both time in and time out first.");
                     }
@@ -90,12 +96,12 @@ public class Electric {
                         double chargingCost = calculateCost(chargingDurationMinutes, chargingRate);
 
                         System.out.println("Parking Duration: " + parkingDurationMinutes + " minutes");
-                        System.out.println("Parking Cost: $" + parkingCost);
+                        System.out.println("Parking Cost: Rp" + parkingCost);
                         System.out.println("Charging Duration: " + chargingDurationMinutes + " minutes");
-                        System.out.println("Charging Cost: $" + chargingCost);
+                        System.out.println("Charging Cost: Rp" + chargingCost);
 
                         double totalCost = parkingCost + chargingCost;
-                        System.out.println("Total Cost: $" + totalCost);
+                        System.out.println("Total Cost: Rp" + totalCost);
                     } else {
                         System.out.println("Please record time in, time out, start charging, and stop charging first.");
                     }
