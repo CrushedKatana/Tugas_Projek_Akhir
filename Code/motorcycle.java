@@ -14,8 +14,8 @@ public class motorcycle {
             userName = input.next();
             System.out.println("Enter license plate number:");
             licensePlate = input.next();
-            System.out.println("Helmet drop off? (true/false): ");
-            isHelmetStored = input.nextBoolean();
+            System.out.println("Helmet drop off? (yes/no): ");
+            isHelmetStored = input.next().equalsIgnoreCase("yes");
 
             // Helmet drop off
             if (isHelmetStored) {
@@ -35,11 +35,11 @@ public class motorcycle {
             }
 
             // Motorcycle wash
-            System.out.println("Want to wash your motorcycle? (true/false): ");
-            isMotorcycleWash = input.nextBoolean();
+            System.out.println("Want to wash your motorcycle? (yes/no): ");
+            isMotorcycleWash = input.next().equalsIgnoreCase("yes");
 
             if (isMotorcycleWash) {
-                System.out.println("Choose motorcycle type (matic/manual) :");
+                System.out.println("Choose motorcycle type (matic/manual): ");
                 String motorcycleType = input.next();
                 switch (motorcycleType.toLowerCase()) {
                     case "matic":
@@ -70,8 +70,8 @@ public class motorcycle {
             }
 
             // Membership
-            System.out.println("Is the user a member? (true/false):");
-            isMember = input.nextBoolean();
+            System.out.println("Is the user a member? (yes/no): ");
+            isMember = input.next().equalsIgnoreCase("yes");
 
             if (isMember) {
                 System.out.println("Select membership type (1 = Regular, 2 = Premium, 3 = Executive): ");
@@ -116,8 +116,8 @@ public class motorcycle {
             System.out.println("Membership Type: " + membershipType);
             System.out.println("Total Cost: " + totalCost);
 
-            System.out.println("Do you want to enter another record? (true/false): ");
-        } while (input.nextBoolean());
+            System.out.println("Do you want to enter another record? (yes/no): ");
+        } while (input.next().equalsIgnoreCase("yes"));
 
         input.close();
     }
