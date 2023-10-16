@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class Electric {
+public class electric {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
