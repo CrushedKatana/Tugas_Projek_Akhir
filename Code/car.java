@@ -4,8 +4,8 @@ public class car {
         Scanner input = new Scanner(System.in);
          //VARIABEL CAR
          double totalharga , waktu, hargaparkir = 5000,hargacucimobil , tambahangin = 2000;
-         boolean ingincucimobil , ingintambahangin, inginmember ; 
-         String nama_user, platnomor, tipemobil ;
+         boolean  ingintambahangin, inginmember,ingincucimobil ; 
+         String nama_user, platnomor, tipemobil;
 
          //sistem pertama
          System.out.println("Input nama user");
@@ -14,51 +14,47 @@ public class car {
          platnomor = input.next();
          System.out.println("Tipe mobil");
          tipemobil = input.next();
-         System.out.println("ingin cuci mobil atau tidak? (true/false)");
-         ingincucimobil = input.nextBoolean();
-         System.out.println("tambah angin? (true/false)");
-         ingintambahangin = input.nextBoolean();
-
-        
-        
-        
-         // sistem selection
-        if (ingincucimobil) 
-        System.out.println("pilih jenis layanan cuci mobil (prem/reg)");
-        String tipelayanan = input.next();
-        if (tipelayanan.equalsIgnoreCase("prem")) {
-            hargacucimobil = 20000;
-        } else if (tipelayanan.equalsIgnoreCase("reg")){
-            hargacucimobil = 30000;
-        } else {
-            System.out.println("input tidak valid gunakan (prem/reg)");
-        return;
-        }
-       
-       
-       
-       // harga parkir 
+         
+// harga parkir 
        System.out.println("input jam parkir = ");
        waktu = input.nextDouble();
         totalharga = (hargaparkir * waktu);
         System.out.println("harga parkir =");
 
-       // harga cuci mobil
-        if (ingincucimobil) { 
-          totalharga += hargacucimobil;
-             System.out.println("harga cuci mobil =" + hargacucimobil);
-        }
-        
-        
-        
-            // tambah angin
-         if (ingintambahangin) {
+
+        //tambah angin
+         System.out.println("tambah angin? (true/false)");
+         ingintambahangin = input.nextBoolean();
+            if (ingintambahangin) {
         totalharga = (tambahangin + totalharga);
         System.out.println("total pemabayaran = " + totalharga);
+        } else {
+            System.out.println("tidak menambah angin ");
         }
         
         
-
+        
+         // sistem selection
+         System.out.println("Ingin cuci mobil atau tidak? (true/false)");
+         ingincucimobil = input.nextBoolean();
+         if (ingincucimobil) {
+             System.out.println("Pilih jenis layanan cuci mobil (prem/reg)");
+             String tipeLayanan = input.next();
+             if (tipeLayanan.equalsIgnoreCase("prem")) {
+                 hargacucimobil = 20000;
+             } else if (tipeLayanan.equalsIgnoreCase("reg")) {
+                 hargacucimobil = 30000;
+             } else {
+                 System.out.println("Input tidak valid, gunakan (prem/reg)");
+                 return;
+             }
+             totalharga += hargacucimobil;
+             System.out.println("Harga cuci mobil = " + hargacucimobil);
+         } else {
+             System.out.println("Pengguna tidak ingin melakukan cuci mobil");
+         }
+          System.out.println("total harga parkir = " + totalharga);
+    
         // menginput member atau tidak member
           System.out.println("apakah pengguna parkir adalah member? ( true/false)");
             inginmember = input.nextBoolean();
