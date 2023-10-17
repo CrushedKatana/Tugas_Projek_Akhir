@@ -14,8 +14,6 @@ public class car {
          platnomor = input.next();
          System.out.println("Tipe mobil");
          tipemobil = input.next();
-         System.out.println("waktu");
-         waktu = input.nextDouble();
          System.out.println("ingin cuci mobil atau tidak? (true/false)");
          ingincucimobil = input.nextBoolean();
          System.out.println("tambah angin? (true/false)");
@@ -40,15 +38,15 @@ public class car {
        
        
        // harga parkir 
-       System.out.println("harga parkir perjam = ");
+       System.out.println("input jam parkir = ");
        waktu = input.nextDouble();
         totalharga = (hargaparkir * waktu);
-
+        System.out.println("harga parkir =");
 
        // harga cuci mobil
         if (ingincucimobil) { 
           totalharga += hargacucimobil;
-             System.out.println("harga titip cuci mobil" + hargacucimobil);
+             System.out.println("harga cuci mobil =" + hargacucimobil);
         }
         
         
@@ -67,7 +65,7 @@ public class car {
 
             // status dari member
         if (inginmember) {
-            System.out.println("input status member (1 =  exsecutive) ( 2  = premium) (3= reguler)");
+            System.out.println("input status member (1 =  executive) ( 2  = premium) (3= reguler)");
         int statusmember = input.nextInt();
         if (statusmember == 1) {
             System.out.println("executive"); ;
@@ -101,10 +99,10 @@ System.out.println("status member premium " + diskon );
     // diskon member parkir executive 10%
     double diskon = totalharga * 0.1;
     totalharga -= diskon;
-    System.out.println("status member reguler");
+    System.out.println("status member reguler" + jenismemberparkir);
     System.out.println("status member reguler " + diskon );
 }
-
+ System.out.println("total pembayaran " + totalharga);
 
         }
 }
