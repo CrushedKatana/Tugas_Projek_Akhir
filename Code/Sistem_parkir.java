@@ -19,11 +19,14 @@ public class Sistem_parkir{
         System.out.println("Selamat datang di Sistem Parkir");
 
         while (true) {
-            System.out.println("Pilih jenis kendaraan yang ingin dimasukkan data parkirnya:");
+            System.out.println("==============================================================");
+            System.out.println("|Pilih jenis kendaraan yang ingin dimasukkan data parkirnya |");
+            System.out.println("==============================================================");
             System.out.println("1. Motorcycle");
             System.out.println("2. Car");
             System.out.println("3. Electric");
             System.out.println("0. Keluar");
+            System.out.println("==============================================================");
 
             int vehicleChoice = input.nextInt();
 
@@ -285,7 +288,7 @@ System.out.println("status member premium " + diskon );
             boolean isMember = input.next().equalsIgnoreCase("yes");
 
             if (isMember) {
-                System.out.println("Select membership type (1 = Regular, 2 = Premium, 3 = Executive): ");
+                System.out.println("Select membership type (1 = Regular (5%), 2 = Premium (10%), 3 = Executive(15%)): ");
                 int membershipChoice = input.nextInt();
                 switch (membershipChoice) {
                     case 1:
