@@ -5,7 +5,7 @@ public class electric {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-         //VARIABLES
+ // VARIABLES
         double parkingPrice, chargingRate;
         String name, platenumber;
         boolean isMember = false;
@@ -95,6 +95,7 @@ public class electric {
                     discount = totalCost * 0.15;
                 } else if (membershipType.equals("Executive")) {
                     discount = totalCost * 0.2;
+                }
             }
 
             totalCost -= discount;
@@ -112,7 +113,6 @@ public class electric {
             System.out.println("==============================================================");
 
             System.out.println("Do you want to calculate cost again? (yes/no):");
-            } while (input.next().equalsIgnoreCase("yes"));
-        }
+        } while (input.next().equalsIgnoreCase("yes"));
     }
 }
