@@ -15,12 +15,12 @@ public class electric {
             System.out.println("Input name user");
             name = input.next();
             System.out.println("Do you have a membership? (yes/no):");
-            isMember = input.next().equalsIgnoreCase("yes"); // Update isMember based on user input
+            isMember = input.next().equalsIgnoreCase("yes");
 
-            String membershipType = "Non-Member"; // Default membership type
+            String membershipType = "Non-Member";
 
             if (isMember) {
-                System.out.println("Select membership type (1 = Regular, 2 = Premium, 3 = Executive): ");
+                System.out.println("Select membership type (1 = Regular(5%), 2 = Premium(10%), 3 = Executive(15%)): ");
                 int membershipChoice = input.nextInt();
                 switch (membershipChoice) {
                     case 1:
