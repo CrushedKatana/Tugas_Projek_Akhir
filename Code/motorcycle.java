@@ -3,17 +3,37 @@ import java.util.Scanner;
 public class motorcycle {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-
-        do {
+ do {
             double totalCost, motorcycleParkingFee = 2000, parkingDuration, helmetStorageCost = 0, motorcycleStorageCostWash = 0;
             String userName, bikeType, licensePlate;
             boolean isHelmetStored, isMember, isMotorcycleWash;
             String membershipType = "";
+            String timeIn, timeOut;
 
             System.out.println("Enter user name:");
             userName = input.next();
             System.out.println("Enter license plate number:");
             licensePlate = input.next();
+            System.out.println("Enter time in (HH:mm): ");
+            timeIn = input.next();
+            System.out.println("Enter time out (HH:mm): ");
+            timeOut = input.next();
+
+            // Parse waktu masuk dan waktu keluar
+            int hoursIn = Integer.parseInt(timeIn.split(":")[0]);
+            int minutesIn = Integer.parseInt(timeIn.split(":")[1]);
+            int hoursOut = Integer.parseInt(timeOut.split(":")[0]);
+            int minutesOut = Integer.parseInt(timeOut.split(":")[1]);
+
+            // Menghitung total jam parkir
+            double totalHours = (hoursOut - hoursIn) + (double) (minutesOut - minutesIn) / 60;
+
+            if (totalHours <= 5) {
+                totalCost = motorcycleParkingFee * totalHours;
+            } else {
+                totalCost = (motorcycleParkingFee * 5) + (motorcycleParkingFee * (totalHours - 5));
+            }
+
             System.out.println("Helmet drop off? (yes/no): ");
             isHelmetStored = input.next().equalsIgnoreCase("yes");
 
