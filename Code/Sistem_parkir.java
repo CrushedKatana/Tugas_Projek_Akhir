@@ -15,7 +15,7 @@ public class Sistem_parkir{
 
         System.out.println("Selamat datang di Sistem Parkir");
 
-        while (true) {
+        do  {
             System.out.println("==============================================================");
             System.out.println("|Pilih jenis kendaraan yang ingin dimasukkan data parkirnya |");
             System.out.println("==============================================================");
@@ -44,8 +44,10 @@ public class Sistem_parkir{
                 default:
                     System.out.println("Pilihan tidak valid. Silakan pilih 1 untuk Motorcycle, 2 untuk Car, 3 untuk Electric, atau 0 untuk keluar.");
             }
-        }
+         System.out.println("Do you want to enter another vehicle? (yes/no): ");
+         } while (input.next().equalsIgnoreCase("yes"));
     }
+
 
     // Method untuk parkir kendaraan motor
     private static void parkMotorcycle(Scanner input) {
