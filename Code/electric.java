@@ -1,136 +1,118 @@
-import java.time.LocalTime;
+
+import java.util.Scanner;
 
 public class electric {
     public static void main(String[] args) {
-        // Get the current time
-        LocalTime currentTime = LocalTime.now();
+        Scanner input = new Scanner(System.in);
 
-        // Display the current time
-        System.out.println("Current time: " + currentTime);
-        
-        //VARIABLE ELECTRIC VEHICLE
-        /*double totalPrice, time, chargingtime;
-        double electric_carparkingprice=5000, electric_motorcycleparkingprice=2000;
-        String name, cartype, motorcycletype, platenumber, vehicletype;
-        
+ // VARIABLES
+        double parkingPrice, chargingRate;
+        String name, platenumber;
+        boolean isMember = false;
+        double parkingDurationHours = 0;
 
-        LocalDateTime timeIn = null;
-        LocalDateTime timeOut = null;
-        LocalDateTime startChargingTime = null;
-        LocalDateTime stopChargingTime = null;
+        do {
+            System.out.println("Input name user");
+            name = input.next();
+            System.out.println("Do you have a membership? (yes/no):");
+            isMember = input.next().equalsIgnoreCase("yes");
 
-        double costPerHour = 1000; // Adjust the cost per hour as needed
-        double chargingRate = 1; // Adjust the charging rate per hour as needed
+            String membershipType = "Non-Member";
 
-
-        System.out.println("Input name user");
-        name = input.next();
-        System.out.println("Choose a vehicle: ");
-        System.out.println("1. Electric Car");
-        System.out.println("2. Electric Motorcycle");
-        int choicetype = input.nextInt();
-
-        switch (choicetype) {
-            case 1:
-                System.out.println("You chose a Electric Car.");
-                System.out.println("Input plate number");
-                platenumber = input.next();
-                System.out.println("Car type = ");
-                cartype = input.next();
-                System.out.println("Press '1' to record time in, '2' to record time out, '3' to start charging, '4' to stop charging, '5' to calculate cost, or '0' to exit.");
-
-                while (true) {
-                    System.out.print("Enter your choice: ");
-                    int choice = input.nextInt();
-        
-                    switch (choice) {
-                        case 1:
-                            timeIn = LocalDateTime.now();
-                            System.out.println("Time in recorded: " + formatDateTime(timeIn));
-                            break;
-                        case 2:
-                            if (timeIn == null) {
-                                System.out.println("Please record time in first.");
-                            } else {
-                                timeOut = LocalDateTime.now();
-                                System.out.println("Time out recorded: " + formatDateTime(timeOut));
-                            }
-                            break;
-                        case 3:
-                            if (timeIn != null && timeOut != null) {
-                                startChargingTime = LocalDateTime.now();
-                                System.out.println("Charging started at: " + formatDateTime(startChargingTime));
-                            } else {
-                                System.out.println("Please record both time in and time out first.");
-                            }
-                            break;
-                        case 4:
-                            if (startChargingTime != null) {
-                                stopChargingTime = LocalDateTime.now();
-                                System.out.println("Charging stopped at: " + formatDateTime(stopChargingTime));
-                            } else {
-                                System.out.println("Please start charging first.");
-                            }
-                            break;
-                        case 5:
-                            if (startChargingTime != null && stopChargingTime != null) {
-                                long chargingDurationMinutes = calculateDurationMinutes(startChargingTime, stopChargingTime);
-                                double chargingCost = calculateCost(chargingDurationMinutes, chargingRate);
-                                long parkingDurationMinutes = calculateDurationMinutes(timeIn, timeOut);
-                                double parkingCost = calculateCost(parkingDurationMinutes, costPerHour);
-        
-                                System.out.println("Charging Duration: " + chargingDurationMinutes + " minutes");
-                                System.out.println("Charging Cost: " + chargingCost);
-                                System.out.println("Parking Duration: " + parkingDurationMinutes + " minutes");
-                                System.out.println("Parking Cost: " + parkingCost);
-                            } else {
-                                System.out.println("Please start and stop charging first.");
-                            }
-                            break;
-                        case 0:
-                            System.out.println("Exiting the program.");
-                            System.exit(0);
-                        default:
-                            System.out.println("Invalid choice. Please enter '1', '2', '3', '4', '5', or '0'.");
-                    }
+            if (isMember) {
+                System.out.println("Select membership type (1 = Regular(5%), 2 = Premium(10%), 3 = Executive(15%)): ");
+                int membershipChoice = input.nextInt();
+                switch (membershipChoice) {
+                    case 1:
+                        membershipType = "Regular";
+                        break;
+                    case 2:
+                        membershipType = "Premium";
+                        break;
+                    case 3:
+                        membershipType = "Executive";
+                        break;
+                    default:
+                        System.out.println("Invalid membership type. Use 1 for Regular, 2 for Premium, or 3 for Executive.");
+                        return;
                 }
             }
-                         // Helper method to calculate the duration in minutes
-                         private static long calculateDurationMinutes(LocalDateTime start, LocalDateTime stop) {
-                        return Duration.between(start, stop).toMinutes();
-                        }
 
-                        // Helper method to calculate the cost based on duration and cost per hour
-                        private static double calculateCost(long durationMinutes, double costPerHour) {
-                        double hours = (double) durationMinutes / 60.0; // Convert minutes to hours
-                        return hours * costPerHour;
-                        }
+            System.out.println("Choose a vehicle: ");
+            System.out.println("1. Electric Car");
+            System.out.println("2. Electric Motorcycle");
+            int choicetype = input.nextInt();
 
-                        // Helper method to format LocalDateTime as a string
-                        private static String formatDateTime(LocalDateTime dateTime) {
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-                        return dateTime.format(formatter);
-                    }
+            switch (choicetype) {
+                case 1:
+                    System.out.println("You chose an Electric Car.");
+                    System.out.println("Input plate number");
+                    platenumber = input.next();
+                    parkingPrice = 5000.00; //parking price for electric cars
+                    chargingRate = 1000.00; //charging rate for electric cars
                     break;
-            case 2:
-                System.out.println("You chose a Electric Motorcycle.");
-                 System.out.println("Input plate number");
-                platenumber = input.next();
-                System.out.println("Motorcycle type = ");
-                motorcycletype = input.next();
-                
-                
-                
-                
-                
+                case 2:
+                    System.out.println("You chose an Electric Motorcycle.");
+                    System.out.println("Input plate number");
+                    platenumber = input.next();
+                    parkingPrice = 2000.00; //parking price for electric motorcycles
+                    chargingRate = 500.00; //charging rate for electric motorcycles
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please choose 1 for Electric Car or 2 for Electric Motorcycle.");
+                    return;
+            }
 
+            System.out.println("Press '1' to calculate cost without charging or '2' to calculate cost with charging.");
+            System.out.print("Enter your choice: ");
+            int userChoice = input.nextInt();
 
-                
-                
-                break;
+            switch (userChoice) {
+                case 1:
+                    System.out.print("Enter parking duration (in hours): ");
+                    parkingDurationHours = input.nextDouble();
+                    break;
+                case 2:
+                    System.out.print("Enter parking duration (in hours): ");
+                    parkingDurationHours = input.nextDouble();
+                    System.out.println("Charging started...");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter '1' or '2'.");
+                    return;
+            }
 
-            default:
-                System.out.println("Invalid choice. Please choose 1 for Electric Car or 2 for Electric Motorcycle.");
-                */
+            double parkingCost = parkingDurationHours * parkingPrice;
+            double chargingCost = (userChoice == 2) ? parkingDurationHours * chargingRate : 0;
+
+            double totalCost = parkingCost + chargingCost;
+
+            double discount = 0.0;
+            if (isMember) { // Check the membership status
+                if (membershipType.equals("Regular")) {
+                    discount = totalCost * 0.1;
+                } else if (membershipType.equals("Premium")) {
+                    discount = totalCost * 0.15;
+                } else if (membershipType.equals("Executive")) {
+                    discount = totalCost * 0.2;
+                }
+            }
+
+            totalCost -= discount;
+
+            System.out.println("==============================================================");
+            System.out.println("Membership Type: " + membershipType);
+            System.out.println("Parking Duration: " + parkingDurationHours + " hours");
+            System.out.println("Parking Cost: Rp" + parkingCost);
+            if (userChoice == 2) {
+                System.out.println("Charging Duration: " + parkingDurationHours + " hours");
+                System.out.println("Charging Cost: Rp" + chargingCost);
+            }
+            System.out.println("==============================================================");
+            System.out.println("Total Cost: " + totalCost);
+            System.out.println("==============================================================");
+
+            System.out.println("Do you want to calculate cost again? (yes/no):");
+        } while (input.next().equalsIgnoreCase("yes"));
     }
 }
