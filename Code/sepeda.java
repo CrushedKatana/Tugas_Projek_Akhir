@@ -136,7 +136,7 @@ public class sepeda {
             System.out.println("Membership Type: " + membershipType);
             System.out.println("Total Cost: " + totalCost);
 
-            // ... (kode yang sudah ada)
+          
 
             // Menampilkan parkiran yang tersedia
             System.out.println("Available parking spaces:");
