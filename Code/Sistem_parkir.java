@@ -194,7 +194,7 @@ public class Sistem_parkir{
             // Mark parking space as occupied
             parkingStatus[chosenParkingSpace][1] = 1;
 
-            System.out.println("Do you want to enter another record? (yes/no): ");
+            System.out.println("Do you want to enter another motorcycle ? (yes/no): ");
         } while (input.next().equalsIgnoreCase("yes"));
     }
 
