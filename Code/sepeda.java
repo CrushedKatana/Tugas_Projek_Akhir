@@ -16,6 +16,7 @@ public class sepeda {
             boolean isHelmetStored, isMember, isMotorcycleWash;
             String membershipType = "";
             String timeIn, timeOut;
+            int number;
 
             System.out.println("Enter user name:");
             userName = input.next();
