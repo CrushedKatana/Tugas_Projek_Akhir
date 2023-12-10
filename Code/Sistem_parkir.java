@@ -1,6 +1,22 @@
 import java.util.Scanner;
 
 public class Sistem_parkir{
+  // Define a class to represent motorcycle data
+    public static class MotorcycleData {
+        String userName;
+        String licensePlate;
+        String bikeType;
+        double totalCost;
+        String membershipType;
+
+        public MotorcycleData(String userName, String licensePlate, String bikeType, double totalCost, String membershipType) {
+            this.userName = userName;
+            this.licensePlate = licensePlate;
+            this.bikeType = bikeType;
+            this.totalCost = totalCost;
+            this.membershipType = membershipType;
+        }
+    }  
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
        
@@ -51,11 +67,19 @@ public class Sistem_parkir{
 
     // Method untuk parkir kendaraan motor
     private static void parkMotorcycle(Scanner input) {
+    
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
         // Total number of parking spaces
         int totalParkingSpaces = 50;
 
         // Matrix to store parking status (0: empty, 1: occupied)
         int[][] parkingStatus = new int[totalParkingSpaces][2];
+
+        // Array to store motorcycle data
+        MotorcycleData[] motorcycleDataArray = new MotorcycleData[totalParkingSpaces];
 
         do {
             double totalCost, motorcycleParkingFee = 2000, parkingDuration, helmetStorageCost = 0, motorcycleStorageCostWash = 0;
@@ -68,6 +92,8 @@ public class Sistem_parkir{
             userName = input.next();
             System.out.println("Enter license plate number:");
             licensePlate = input.next();
+            System.out.println("Enter bike type:");
+            bikeType = input.next();    
             System.out.println("Enter time in (HH:mm): ");
             timeIn = input.next();
             System.out.println("Enter time out (HH:mm): ");
@@ -194,10 +220,27 @@ public class Sistem_parkir{
             // Mark parking space as occupied
             parkingStatus[chosenParkingSpace][1] = 1;
 
-            System.out.println("Do you want to enter another motorcycle ? (yes/no): ");
+            // Store motorcycle data in the array
+            MotorcycleData motorcycleData = new MotorcycleData(userName, licensePlate, bikeType, totalCost, membershipType);
+            motorcycleDataArray[chosenParkingSpace] = motorcycleData;
+
+            System.out.println("Do you want to enter another record? (yes/no): ");
         } while (input.next().equalsIgnoreCase("yes"));
+
+        // Print motorcycle data
+        for (MotorcycleData motorcycleData : motorcycleDataArray) {
+            if (motorcycleData != null) {
+                System.out.println("User Name: " + motorcycleData.userName);
+                System.out.println("License Plate: " + motorcycleData.licensePlate);
+                System.out.println("Bike Type: " + motorcycleData.bikeType);
+                System.out.println("Total Cost: " + motorcycleData.totalCost);
+                System.out.println("Membership Type: " + motorcycleData.membershipType);
+                System.out.println("-------------------------");
+            }
+        }
     }
 
+    // Your existing methods for displayAvailableParking and selectParkingSpace
     // Method to display available parking spaces
     private static void displayAvailableParking(int[][] parkingStatus) {
         for (int i = 0; i < parkingStatus.length; i++) {
@@ -227,7 +270,7 @@ public class Sistem_parkir{
 
         return chosenParkingSpace - 1; // Return the matrix index (starting from 0)
     }
-
+}
     
 
     // Method untuk parkir mobil
