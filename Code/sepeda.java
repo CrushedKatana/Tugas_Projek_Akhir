@@ -4,91 +4,180 @@ public class sepeda {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        // VARIABEL MOTORCYCLE
-        double hargatotal, hargaparkirmotorcycle = 2000, lamaparkir, hargatitiphelm = 0;
-        String namauser, tipesepeda, nomorplat;
-        boolean istitiphelm, ismember;
-        String jenisMember = "";
+        // Total number of parking spaces
+        int totalParkingSpaces = 50;
 
-        System.out.println("Input nama user =");
-        namauser = input.next();
-        System.out.println("Input plat nomor =");
-        nomorplat = input.next();
-        System.out.println("Helmet drop off ? (true/false) = ");
-        istitiphelm = input.nextBoolean();
+        // Matrix to store parking status (0: empty, 1: occupied)
+        int[][] parkingStatus = new int[totalParkingSpaces][2];
 
-        if (istitiphelm) {
-            System.out.println("Pilih tipe helm (half/full): ");
-            String tipehelm = input.next();
-            if (tipehelm.equalsIgnoreCase("half")) {
-                hargatitiphelm = 2000;
-            } else if (tipehelm.equalsIgnoreCase("full")) {
-                hargatitiphelm = 3000;
+        do {
+            double totalCost, motorcycleParkingFee = 2000, parkingDuration, helmetStorageCost = 0, motorcycleStorageCostWash = 0;
+            String userName, bikeType, licensePlate;
+            boolean isHelmetStored, isMember, isMotorcycleWash;
+            String membershipType = "";
+            String timeIn, timeOut;
+
+            System.out.println("Enter user name:");
+            userName = input.next();
+            System.out.println("Enter license plate number:");
+            licensePlate = input.next();
+            System.out.println("Enter time in (HH:mm): ");
+            timeIn = input.next();
+            System.out.println("Enter time out (HH:mm): ");
+            timeOut = input.next();
+
+            // Parsing time in and time out
+            int hoursIn = Integer.parseInt(timeIn.split(":")[0]);
+            int minutesIn = Integer.parseInt(timeIn.split(":")[1]);
+            int hoursOut = Integer.parseInt(timeOut.split(":")[0]);
+            int minutesOut = Integer.parseInt(timeOut.split(":")[1]);
+
+            // Calculating total parking hours
+            double totalHours = (hoursOut - hoursIn) + (double) (minutesOut - minutesIn) / 60;
+
+            if (totalHours <= 5) {
+                totalCost = motorcycleParkingFee * totalHours;
             } else {
-                System.out.println("Tipe helm tidak valid. Gunakan 'half' atau 'full'.");
+                totalCost = (motorcycleParkingFee * 5) + (motorcycleParkingFee * (totalHours - 5));
+            }
+
+            System.out.println("Helmet drop off? (yes/no): ");
+            isHelmetStored = input.next().equalsIgnoreCase("yes");
+
+            // Helmet drop off
+            if (isHelmetStored) {
+                System.out.println("Choose helmet type (half/full): ");
+                String helmetType = input.next();
+                switch (helmetType.toLowerCase()) {
+                    case "half":
+                        helmetStorageCost = 2000;
+                        break;
+                    case "full":
+                        helmetStorageCost = 3000;
+                        break;
+                    default:
+                        System.out.println("Invalid helmet type. Use 'half' or 'full'.");
+                        return;
+                }
+            }
+
+            // Motorcycle wash
+            System.out.println("Want to wash your motorcycle? (yes/no): ");
+            isMotorcycleWash = input.next().equalsIgnoreCase("yes");
+
+            if (isMotorcycleWash) {
+                System.out.println("Choose motorcycle type (matic/manual): ");
+                String motorcycleType = input.next();
+                switch (motorcycleType.toLowerCase()) {
+                    case "matic":
+                        motorcycleStorageCostWash = 15000;
+                        break;
+                    case "manual":
+                        motorcycleStorageCostWash = 20000;
+                        break;
+                    default:
+                        System.out.println("Invalid motorcycle type. Use 'matic' or 'manual'.");
+                }
+            }
+
+            // Total cost of helmet storage + parking fee
+            if (isHelmetStored) {
+                totalCost += helmetStorageCost;
+                System.out.println("Helmet storage cost: " + helmetStorageCost);
+            }
+
+            // Membership
+            System.out.println("Is the user a member? (yes/no): ");
+            isMember = input.next().equalsIgnoreCase("yes");
+
+            if (isMember) {
+                System.out.println("Select membership type (1 = Regular, 2 = Premium, 3 = Executive): ");
+                int membershipChoice = input.nextInt();
+                switch (membershipChoice) {
+                    case 1:
+                        membershipType = "Regular";
+                        break;
+                    case 2:
+                        membershipType = "Premium";
+                        break;
+                    case 3:
+                        membershipType = "Executive";
+                        break;
+                    default:
+                        System.out.println("Invalid membership type. Use 1 for Regular, 2 for Premium, or 3 for Executive.");
+                        return;
+                }
+            }
+
+            switch (membershipType) {
+                case "Regular":
+                    double discount = totalCost * 0.1;
+                    totalCost -= discount;
+                    System.out.println("Membership status: Regular");
+                    System.out.println("Membership discount: " + discount);
+                    break;
+                case "Premium":
+                    double discount2 = totalCost * 0.15;
+                    totalCost -= discount2;
+                    System.out.println("Membership status: Premium");
+                    System.out.println("Membership discount: " + discount2);
+                    break;
+                case "Executive":
+                    double discount3 = totalCost * 0.2;
+                    totalCost -= discount3;
+                    System.out.println("Membership status: Executive");
+                    System.out.println("Membership discount: " + discount3);
+                    break;
+            }
+
+            System.out.println("Membership Type: " + membershipType);
+            System.out.println("Total Cost: " + totalCost);
+
+            // Display available parking spaces
+            System.out.println("Available parking spaces:");
+            displayAvailableParking(parkingStatus);
+
+            // Select parking space
+            int chosenParkingSpace = selectParkingSpace(parkingStatus);
+            if (chosenParkingSpace == -1) {
+                System.out.println("All parking spaces are occupied. Cannot proceed.");
                 return;
             }
-        }
 
-        // Harga parkir per jam
-        System.out.println("Input lama parkir (jam) =");
-        lamaparkir = input.nextDouble();
+            // Mark parking space as occupied
+            parkingStatus[chosenParkingSpace][1] = 1;
 
-        if (lamaparkir <= 5) {
-            hargatotal = hargaparkirmotorcycle * lamaparkir;
-        } else {
-            hargatotal = (hargaparkirmotorcycle * 5) + (hargaparkirmotorcycle * (lamaparkir - 5));
-        }
+            System.out.println("Do you want to enter another record? (yes/no): ");
+        } while (input.next().equalsIgnoreCase("yes"));
+    }
 
-        // Harga penitipan helm
-        if (istitiphelm) {
-            hargatotal += hargatitiphelm;
-            System.out.println("Harga penitipan helm: " + hargatitiphelm);
-        }
-
-        // Input apakah pengguna adalah member atau bukan
-        System.out.println("Apakah pengguna adalah member? (true/false) = ");
-        ismember = input.nextBoolean();
-
-        // Input jenis keanggotaan jika pengguna adalah member
-        if (ismember) {
-            System.out.println("Pilih jenis keanggotaan (1 = Reguler, 2 = Premium, 3 = Executive): ");
-            int jenisKeanggotaan = input.nextInt();
-            if (jenisKeanggotaan == 1) {
-                jenisMember = "Reguler";
-            } else if (jenisKeanggotaan == 2) {
-                jenisMember = "Premium";
-            } else if (jenisKeanggotaan == 3) {
-                jenisMember = "Executive";
+    // Method to display available parking spaces
+    private static void displayAvailableParking(int[][] parkingStatus) {
+        for (int i = 0; i < parkingStatus.length; i++) {
+            if (parkingStatus[i][1] == 0) {
+                System.out.print(i + 1 + " ");
             } else {
-                System.out.println("Jenis keanggotaan tidak valid. Gunakan 1 untuk Reguler, 2 untuk Premium, atau 3 untuk Executive.");
-                return;
+                System.out.print("X ");
+            }
+
+            if ((i + 1) % 10 == 0) {
+                System.out.println(); // Move to the next line every 10 parking spaces
             }
         }
+        System.out.println();
+    }
 
-        // Diskon berdasarkan jenis keanggotaan
-        if (jenisMember.equals("Reguler")) {
-            // Diskon 10% untuk member reguler
-            double diskon = hargatotal * 0.1;
-            hargatotal -= diskon;
-            System.out.println("Status member: Reguler");
-            System.out.println("Diskon member: " + diskon);
-        } else if (jenisMember.equals("Premium")) {
-            // Diskon 15% untuk member premium
-            double diskon = hargatotal * 0.15;
-            hargatotal -= diskon;
-            System.out.println("Status member: Premium");
-            System.out.println("Diskon member: " + diskon);
-        } else if (jenisMember.equals("Executive")) {
-            // Diskon 20% untuk member executive
-            double diskon = hargatotal * 0.2;
-            hargatotal -= diskon;
-            System.out.println("Status member: Executive");
-            System.out.println("Diskon member: " + diskon);
+    // Method to select an available parking space
+    private static int selectParkingSpace(int[][] parkingStatus) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Choose an available parking space (1-" + parkingStatus.length + "): ");
+        int chosenParkingSpace = input.nextInt();
+
+        if (chosenParkingSpace < 1 || chosenParkingSpace > parkingStatus.length || parkingStatus[chosenParkingSpace - 1][1] == 1) {
+            System.out.println("Invalid choice or parking space already occupied. Please choose again.");
+            return selectParkingSpace(parkingStatus); // Recursion if the choice is invalid or the parking space is already occupied
         }
 
-        System.out.println("Jenis Keanggotaan: " + jenisMember);
-        System.out.println("Harga total: " + hargatotal);
-        input.close();
+        return chosenParkingSpace - 1; // Return the matrix index (starting from 0)
     }
 }
