@@ -99,6 +99,44 @@ System.out.println("status member premium " + diskon );
     System.out.println("status member reguler " + diskon );
 }
  System.out.println("total pembayaran " + totalharga);
+ 
+ 
+        int maxRows = 3;
+        int maxCols = 5;
+        double[][] totalHargaArray = new double[maxRows][maxCols];
+
+        // Loop to handle multiple vehicles
+        for (int row = 0; row < maxRows; row++) {
+            for (int col = 0; col < maxCols; col++) {
+                parkCar(input, totalHargaArray, row, col);
+            }
+        }
+
+        // Display total prices for all vehicles
+        displayTotalPrices(totalHargaArray);
+    }
+
+    private static void parkCar(Scanner input, double[][] totalHargaArray, int row, int col) {
+        // Existing code for parking a single car goes here.
+
+        // Check if parking area is full
+        if (row == totalHargaArray.length - 1 && col == totalHargaArray[row].length - 1) {
+            System.out.println("Parking area is full. No more vehicles allowed.");
+            System.exit(0); // Terminate the program
+        }
+        
+        // Use totalHargaArray[row][col] to store the total price for each vehicle.
+    }
+
+    private static void displayTotalPrices(double[][] totalHargaArray) {
+        System.out.println("Total Prices for All Vehicles:");
+
+        for (int row = 0; row < totalHargaArray.length; row++) {
+            for (int col = 0; col < totalHargaArray[row].length; col++) {
+                System.out.println("Vehicle at Row " + (row + 1) + ", Col " + (col + 1) +
+                        ": Total Price = " + totalHargaArray[row][col]);
+            }
+        }
+    }
 
         }
-}

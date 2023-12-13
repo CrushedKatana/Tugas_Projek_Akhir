@@ -274,108 +274,102 @@ public class Sistem_parkir{
 
     // Method untuk parkir mobil
     private static void parkCar(Scanner input) {
-        //VARIABEL CAR
-        double totalharga , waktu, hargaparkir = 5000,hargacucimobil , tambahangin = 2000;
-        boolean ingincucimobil , ingintambahangin, inginmember ; 
-        String nama_user, platnomor, tipemobil ;
-
-        //sistem pertama
-        System.out.println("Input nama user");
-        nama_user = input.next();
-        System.out.println("Input plat nomor");
-        platnomor = input.next();
-        System.out.println("Tipe mobil");
-        tipemobil = input.next();
-        System.out.println("waktu");
-        waktu = input.nextDouble();
-        System.out.println("ingin cuci mobil atau tidak? (true/false)");
-        ingincucimobil = input.nextBoolean();
-        System.out.println("tambah angin? (true/false)");
-        ingintambahangin = input.nextBoolean();
-
-       
-       
-       
-        // sistem selection
-       if (ingincucimobil) 
-       System.out.println("pilih jenis layanan cuci mobil (prem/reg)");
-       String tipelayanan = input.next();
-       if (tipelayanan.equalsIgnoreCase("prem")) {
-           hargacucimobil = 20000;
-       } else if (tipelayanan.equalsIgnoreCase("reg")){
-           hargacucimobil = 30000;
-       } else {
-           System.out.println("input tidak valid gunakan (prem/reg)");
-       return;
-       }
-      
-      
-      
-      // harga parkir 
-      System.out.println("harga parkir perjam = ");
-      waktu = input.nextDouble();
-       totalharga = (hargaparkir * waktu);
-
-
-      // harga cuci mobil
-       if (ingincucimobil) { 
-         totalharga += hargacucimobil;
-            System.out.println("harga titip cuci mobil" + hargacucimobil);
-       }
-       
-       
-       
-           // tambah angin
-        if (ingintambahangin) {
-       totalharga = (tambahangin + totalharga);
-       System.out.println("total pemabayaran = " + totalharga);
-       }
-       
-       
-
-       // menginput member atau tidak member
-         System.out.println("apakah pengguna parkir adalah member? ( true/false)");
-           inginmember = input.nextBoolean();
-
-           // status dari member
-       if (inginmember) {
-           System.out.println("input status member (1 =  exsecutive) ( 2  = premium) (3= reguler)");
-       int statusmember = input.nextInt();
-       if (statusmember == 1) {
-           System.out.println("executive"); ;
-       } else if (statusmember == 2) {
-           System.out.println("premium");;
-       } else if (statusmember == 3) {
-           System.out.println("reguler");;
-       } else {
-           System.out.println("input tidak valid (gunakan angka 1,2,3)");
-       return;
-       }
-   }
-
-// jenis status member
-String jenismemberparkir = "";
-if (jenismemberparkir.equals("executive")) {
-   // diskon member parkir executive 20%
-    double diskon = totalharga * 0.2;
-   totalharga -= diskon;
-   System.out.println("status member executive");
-   System.out.println("status member executive " + diskon );
-
-} if (jenismemberparkir.equals("premium")) {
-// diskon member parkir executive 15% 
-double diskon = totalharga * 0.15;
-totalharga -= diskon;
-System.out.println("status premium");
-System.out.println("status member premium " + diskon );
-
-}  if  (jenismemberparkir.equals("reguler")) {
-   // diskon member parkir executive 10%
-   double diskon = totalharga * 0.1;
-   totalharga -= diskon;
-   System.out.println("status member reguler");
-   System.out.println("status member reguler " + diskon );
-}
+        double totalCost, parkingFee = 5000, washCost = 0, airInflateCost = 2000;
+        boolean isCarWash, isAirInflate, isMember;
+        String userName, carType, licensePlate, membershipType = "";
+    
+        do {
+            // Input information
+            System.out.println("Enter user name:");
+            userName = input.next();
+            System.out.println("Enter license plate number:");
+            licensePlate = input.next();
+            System.out.println("Car type (sedan/suv): ");
+            carType = input.next();
+            System.out.println("Parking duration (hours):");
+            double parkingDuration = input.nextDouble();
+            System.out.println("Want a car wash? (yes/no): ");
+            isCarWash = input.next().equalsIgnoreCase("yes");
+            System.out.println("Want to inflate the tires? (yes/no): ");
+            isAirInflate = input.next().equalsIgnoreCase("yes");
+    
+            // Car wash
+            if (isCarWash) {
+                System.out.println("Choose wash type (prem/reg): ");
+                String washType = input.next();
+                switch (washType.toLowerCase()) {
+                    case "prem":
+                        washCost = 30000;
+                        break;
+                    case "reg":
+                        washCost = 20000;
+                        break;
+                    default:
+                        System.out.println("Invalid wash type. Use 'prem' or 'reg'.");
+                        return;
+                }
+            }
+    
+            // Air inflate
+            if (isAirInflate) {
+                totalCost = airInflateCost;
+            } else {
+                totalCost = parkingFee * parkingDuration;
+            }
+    
+            // Car wash cost
+            if (isCarWash) {
+                totalCost += washCost;
+                System.out.println("Car wash cost: " + washCost);
+            }
+    
+            // Membership
+            System.out.println("Is the user a member? (yes/no): ");
+            isMember = input.next().equalsIgnoreCase("yes");
+    
+            if (isMember) {
+                System.out.println("Select membership type (1 = Regular, 2 = Premium, 3 = Executive): ");
+                int membershipChoice = input.nextInt();
+                switch (membershipChoice) {
+                    case 1:
+                        membershipType = "Regular";
+                        break;
+                    case 2:
+                        membershipType = "Premium";
+                        break;
+                    case 3:
+                        membershipType = "Executive";
+                        break;
+                    default:
+                        System.out.println("Invalid membership type. Use 1 for Regular, 2 for Premium, or 3 for Executive.");
+                        return;
+                }
+            }
+    
+            // Membership discounts
+            switch (membershipType) {
+                case "Regular":
+                    totalCost *= 0.9;
+                    System.out.println("Membership status: Regular");
+                    System.out.println("Membership discount: 10%");
+                    break;
+                case "Premium":
+                    totalCost *= 0.85;
+                    System.out.println("Membership status: Premium");
+                    System.out.println("Membership discount: 15%");
+                    break;
+                case "Executive":
+                    totalCost *= 0.8;
+                    System.out.println("Membership status: Executive");
+                    System.out.println("Membership discount: 20%");
+                    break;
+            }
+    
+            System.out.println("Membership Type: - " + membershipType);
+            System.out.println("Total Cost: " + totalCost);
+    
+            System.out.println("Do you want to enter another record? (yes/no): ");
+        } while (input.next().equalsIgnoreCase("yes"));
     }
 
     // Method untuk parkir kendaraan listrik
