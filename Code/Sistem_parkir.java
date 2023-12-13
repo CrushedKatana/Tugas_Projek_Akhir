@@ -2,23 +2,21 @@ import java.util.Scanner;
 
 public class Sistem_parkir{
    // Define a class to represent motorcycle data
-   public static class MotorcycleData {
-    String userName;
-    String licensePlate;
-    String bikeType;
-    String membershipType; 
-    double totalCost;
-   
-
-    public MotorcycleData(String userName, String licensePlate, String bikeType, double totalCost, String membershipType) {
-        this.userName = userName;
-        this.licensePlate = licensePlate;
-        this.bikeType = bikeType;
-        this.membershipType = membershipType; 
-        this.totalCost = totalCost;
+   public static class Parkir{
+    static String[] userName = new String[50];
+    static String[] licensePlate = new String[50];
+    static String[] bikeType = new String[50];
+    static String[] membershipType = new String[50]; 
+    static double[] totalCost = new double[50];  
+    
+    static int idxuserName = -1;
+    static int idxlicensePlate = -1;
+    static int idxbiketype = -1;
+    static int idxmembershipType = -1; 
+    static int idxtotalCost = -1;
         
-    }
-}
+    
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
        
@@ -77,22 +75,26 @@ public class Sistem_parkir{
         // Matrix to store parking status (0: empty, 1: occupied)
         int[][] parkingStatus = new int[totalParkingSpaces][2];
 
-        // Array to store motorcycle data
-        MotorcycleData[] motorcycleDataArray = new MotorcycleData[totalParkingSpaces];
+        
+        
 
         do {
             double totalCost, motorcycleParkingFee = 2000, parkingDuration, helmetStorageCost = 0, motorcycleStorageCostWash = 0;
-            String userName, bikeType, licensePlate;
             boolean isHelmetStored, isMember, isMotorcycleWash;
             String membershipType = "";
             String timeIn, timeOut;
 
-            System.out.println("Enter user name:");
-            userName = input.next();
-            System.out.println("Enter license plate number:");
-            licensePlate = input.next();
-            System.out.println("Enter bike type:");
-            bikeType = input.next();    
+            idxuserName++;
+            idxlicensePlate++;
+            idxbiketype++;
+            idxmembershipType++;
+            idxtotalCost++;
+            System.out.print("Input user name = ");
+            userName[idxuserName] = input.next();
+            System.out.print("Input license plate = ");
+            licensePlate[idxlicensePlate] = input.next();
+            System.out.print("Input bike type = ");
+            bikeType[idxbiketype] = input.next(); 
             System.out.println("Enter time in (HH:mm): ");
             timeIn = input.next();
             System.out.println("Enter time out (HH:mm): ");
@@ -160,7 +162,7 @@ public class Sistem_parkir{
 
             if (isMotorcycleWash) {
                 totalCost += motorcycleStorageCostWash;
-                System.out.println(" Motorcycle storage cost: " + motorcycleStorageCostWash);
+                System.out.println("Motorcycle storage cost: " + motorcycleStorageCostWash);
             }
 
             // Membership
@@ -224,24 +226,34 @@ public class Sistem_parkir{
             // Mark parking space as occupied
             parkingStatus[chosenParkingSpace][1] = 1;
 
-            // Store motorcycle data in the array
-            MotorcycleData motorcycleData = new MotorcycleData(userName, licensePlate, bikeType, totalCost, membershipType);
-            motorcycleDataArray[chosenParkingSpace] = motorcycleData;
+            
 
             System.out.println("Do you want to enter another motorcycle? (yes/no): ");
         } while (input.next().equalsIgnoreCase("yes"));
+    
+    //call ooutput for method each motorcycle after loop
+    for(int i = 0; i <=idxuserName;i++){
+        output(userName[i]);
+    }
 
-        // Print motorcycle data
-        for (MotorcycleData motorcycleData : motorcycleDataArray) {
-            if (motorcycleData != null) {
-                System.out.println("User Name: " + motorcycleData.userName);
-                System.out.println("License Plate: " + motorcycleData.licensePlate);
-                System.out.println("Bike Type: " + motorcycleData.bikeType);
-                System.out.println("Membership Type: " + motorcycleData.membershipType);
-                System.out.println("Total Cost: " + motorcycleData.totalCost);
-                System.out.println("-------------------------");
-            }
+    }
+    static void output (String uname) {
+      //cari idx dimana username tsb berada
+      int idxUname = -1;
+      for(int i=0;i<userName.length;i++){
+        if(userName[i].equalsIgnoreCase(uname)){
+            idxUname = i;
+            break;
         }
+         System.out.println("Membership Type: " + membershipType[idxUname]);
+         System.out.println("Total Cost: " + totalCost[idxUname]);
+      }    
+      System.out.println("Username = "+userName[idxUname]);
+      System.out.println("License Plate = "+licensePlate[idxUname]);
+      System.out.println("Bike Type = "+bikeType[idxUname]);
+    
+
+      
     }
 
     // Your existing methods for displayAvailableParking and selectParkingSpace
@@ -274,6 +286,8 @@ public class Sistem_parkir{
 
         return chosenParkingSpace - 1; // Return the matrix index (starting from 0)
     }
+}
+  
     
 
     // Method untuk parkir mobil
