@@ -316,7 +316,7 @@ public class Sistem_parkir{
     
             // Air inflate
             if (isAirInflate) {
-                totalCost = airInflateCost;
+                totalCost = airInflateCost + parkingFee * parkingDuration;
             } else {
                 totalCost = parkingFee * parkingDuration;
             }
