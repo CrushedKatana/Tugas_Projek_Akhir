@@ -2,20 +2,18 @@ import java.util.Scanner;
 
 public class motorcycle {
     // Define a class to represent motorcycle data
-    public static class MotorcycleData {
-        String userName;
-        String licensePlate;
-        String bikeType;
-        double totalCost;
-        String membershipType;
-
-        public MotorcycleData(String userName, String licensePlate, String bikeType, double totalCost, String membershipType) {
-            this.userName = userName;
-            this.licensePlate = licensePlate;
-            this.bikeType = bikeType;
-            this.totalCost = totalCost;
-            this.membershipType = membershipType;
-        }
+        class Motorcycleparking{
+        static String[] userName = new String[50];
+        static String[] licensePlate = new String[50];
+        static String[] bikeType = new String[50];
+        static String[] membershipType = new String[50]; 
+        static double[] totalCost = new double[50];  
+        
+        static int idxuserName = -1;
+        static int idxlicensePlate = -1;
+        static int idxbiketype = -1;
+        static int idxmembershipType = -1; 
+        static int idxtotalCost = -1; 
     }
 
     public static void main(String[] args) {
@@ -27,8 +25,7 @@ public class motorcycle {
         // Matrix to store parking status (0: empty, 1: occupied)
         int[][] parkingStatus = new int[totalParkingSpaces][2];
 
-        // Array to store motorcycle data
-        MotorcycleData[] motorcycleDataArray = new MotorcycleData[totalParkingSpaces];
+        
 
         do {
             double totalCost, motorcycleParkingFee = 2000, parkingDuration, helmetStorageCost = 0, motorcycleStorageCostWash = 0;
@@ -108,6 +105,11 @@ public class motorcycle {
                 System.out.println("Helmet storage cost: " + helmetStorageCost);
             }
 
+            if (isMotorcycleWash) {
+                totalCost += motorcycleStorageCostWash;
+                System.out.println(" Motorcycle storage cost: " + motorcycleStorageCostWash);
+            }
+
             // Membership
             System.out.println("Is the user a member? (yes/no): ");
             isMember = input.next().equalsIgnoreCase("yes");
@@ -151,7 +153,7 @@ public class motorcycle {
                     System.out.println("Membership discount: " + discount3);
                     break;
             }
-
+            
             System.out.println("Membership Type: " + membershipType);
             System.out.println("Total Cost: " + totalCost);
 
@@ -169,24 +171,12 @@ public class motorcycle {
             // Mark parking space as occupied
             parkingStatus[chosenParkingSpace][1] = 1;
 
-            // Store motorcycle data in the array
-            MotorcycleData motorcycleData = new MotorcycleData(userName, licensePlate, bikeType, totalCost, membershipType);
-            motorcycleDataArray[chosenParkingSpace] = motorcycleData;
+           
 
-            System.out.println("Do you want to enter another record? (yes/no): ");
+            System.out.println("Do you want to enter another motorcycle? (yes/no): ");
         } while (input.next().equalsIgnoreCase("yes"));
 
-        // Print motorcycle data
-        for (MotorcycleData motorcycleData : motorcycleDataArray) {
-            if (motorcycleData != null) {
-                System.out.println("User Name: " + motorcycleData.userName);
-                System.out.println("License Plate: " + motorcycleData.licensePlate);
-                System.out.println("Bike Type: " + motorcycleData.bikeType);
-                System.out.println("Total Cost: " + motorcycleData.totalCost);
-                System.out.println("Membership Type: " + motorcycleData.membershipType);
-                System.out.println("-------------------------");
-            }
-        }
+        
     }
 
     // Your existing methods for displayAvailableParking and selectParkingSpace
@@ -220,4 +210,3 @@ public class motorcycle {
         return chosenParkingSpace - 1; // Return the matrix index (starting from 0)
     }
 }
-
