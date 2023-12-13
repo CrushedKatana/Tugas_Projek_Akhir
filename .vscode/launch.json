@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Sistem_parkir$Parkir",
+            "request": "launch",
+            "mainClass": "Sistem_parkir$Parkir",
+            "projectName": "Tugas_Projek_Akhir_4521917f"
+        },
+        {
+            "type": "java",
+            "name": "sepeda$Parkir",
+            "request": "launch",
+            "mainClass": "sepeda$Parkir",
+            "projectName": "Tugas_Projek_Akhir_4521917f"
+        },
+        {
+            "type": "java",
             "name": "sepeda",
             "request": "launch",
             "mainClass": "sepeda",
