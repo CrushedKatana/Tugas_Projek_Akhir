@@ -67,8 +67,7 @@ public class Sistem_parkir{
 
     // Method untuk parkir kendaraan motor
     private static void parkMotorcycle(Scanner input) {
-    
-
+   
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
