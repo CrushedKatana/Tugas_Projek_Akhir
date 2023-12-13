@@ -1,22 +1,24 @@
 import java.util.Scanner;
 
 public class Sistem_parkir{
-  // Define a class to represent motorcycle data
-    public static class MotorcycleData {
-        String userName;
-        String licensePlate;
-        String bikeType;
-        double totalCost;
-        String membershipType;
+   // Define a class to represent motorcycle data
+   public static class MotorcycleData {
+    String userName;
+    String licensePlate;
+    String bikeType;
+    String membershipType; 
+    double totalCost;
+   
 
-        public MotorcycleData(String userName, String licensePlate, String bikeType, double totalCost, String membershipType) {
-            this.userName = userName;
-            this.licensePlate = licensePlate;
-            this.bikeType = bikeType;
-            this.totalCost = totalCost;
-            this.membershipType = membershipType;
-        }
-    }  
+    public MotorcycleData(String userName, String licensePlate, String bikeType, double totalCost, String membershipType) {
+        this.userName = userName;
+        this.licensePlate = licensePlate;
+        this.bikeType = bikeType;
+        this.membershipType = membershipType; 
+        this.totalCost = totalCost;
+        
+    }
+}
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
        
@@ -67,9 +69,7 @@ public class Sistem_parkir{
 
     // Method untuk parkir kendaraan motor
     private static void parkMotorcycle(Scanner input) {
-   
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+        
 
         // Total number of parking spaces
         int totalParkingSpaces = 50;
@@ -158,6 +158,11 @@ public class Sistem_parkir{
                 System.out.println("Helmet storage cost: " + helmetStorageCost);
             }
 
+            if (isMotorcycleWash) {
+                totalCost += motorcycleStorageCostWash;
+                System.out.println(" Motorcycle storage cost: " + motorcycleStorageCostWash);
+            }
+
             // Membership
             System.out.println("Is the user a member? (yes/no): ");
             isMember = input.next().equalsIgnoreCase("yes");
@@ -201,7 +206,7 @@ public class Sistem_parkir{
                     System.out.println("Membership discount: " + discount3);
                     break;
             }
-
+            
             System.out.println("Membership Type: " + membershipType);
             System.out.println("Total Cost: " + totalCost);
 
@@ -223,7 +228,7 @@ public class Sistem_parkir{
             MotorcycleData motorcycleData = new MotorcycleData(userName, licensePlate, bikeType, totalCost, membershipType);
             motorcycleDataArray[chosenParkingSpace] = motorcycleData;
 
-            System.out.println("Do you want to enter another record? (yes/no): ");
+            System.out.println("Do you want to enter another motorcycle? (yes/no): ");
         } while (input.next().equalsIgnoreCase("yes"));
 
         // Print motorcycle data
@@ -232,8 +237,8 @@ public class Sistem_parkir{
                 System.out.println("User Name: " + motorcycleData.userName);
                 System.out.println("License Plate: " + motorcycleData.licensePlate);
                 System.out.println("Bike Type: " + motorcycleData.bikeType);
-                System.out.println("Total Cost: " + motorcycleData.totalCost);
                 System.out.println("Membership Type: " + motorcycleData.membershipType);
+                System.out.println("Total Cost: " + motorcycleData.totalCost);
                 System.out.println("-------------------------");
             }
         }
@@ -269,7 +274,6 @@ public class Sistem_parkir{
 
         return chosenParkingSpace - 1; // Return the matrix index (starting from 0)
     }
-}
     
 
     // Method untuk parkir mobil
