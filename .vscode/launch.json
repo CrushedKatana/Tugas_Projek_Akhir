@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "sepeda",
+            "request": "launch",
+            "mainClass": "sepeda",
+            "projectName": "Tugas_Projek_Akhir_f77e5ae8"
+        },
+        {
+            "type": "java",
+            "name": "car",
+            "request": "launch",
+            "mainClass": "car",
+            "projectName": "Tugas_Projek_Akhir_f77e5ae8"
+        },
+        {
+            "type": "java",
             "name": "electric",
             "request": "launch",
             "mainClass": "electric",

@@ -6,7 +6,7 @@ public class electric {
         Scanner input = new Scanner(System.in);
 
  // VARIABLES
-        double parkingPrice, chargingRate;
+        double parkingPrice, chargingRate, washPrice;
         String name, platenumber;
         boolean isMember = false;
         double parkingDurationHours = 0;
@@ -30,7 +30,7 @@ public class electric {
 
             System.out.println("Do you have a membership? (yes/no):");
             isMember = input.next().equalsIgnoreCase("yes");
-            
+
             String membershipType = "Non-Member";
 
             if (isMember) {
@@ -62,22 +62,24 @@ public class electric {
                     System.out.println("You chose an Electric Car.");
                     System.out.println("Input plate number");
                     platenumber = input.next();
-                    parkingPrice = 5000.00; //parking price for electric cars
-                    chargingRate = 1000.00; //charging rate for electric cars
+                    parkingPrice = 5000.0; // parking price for electric cars
+                    chargingRate = 1000.0; // charging rate for electric cars
+                    washPrice = 25000.0; // wash price for electric cars
                     break;
                 case 2:
                     System.out.println("You chose an Electric Motorcycle.");
                     System.out.println("Input plate number");
                     platenumber = input.next();
-                    parkingPrice = 2000.00; //parking price for electric motorcycles
-                    chargingRate = 500.00; //charging rate for electric motorcycles
+                    parkingPrice = 2000.0; // parking price for electric motorcycles
+                    chargingRate = 500.0; // charging rate for electric motorcycles
+                    washPrice = 15000.0; // wash price for electric motorcycles
                     break;
                 default:
                     System.out.println("Invalid choice. Please choose 1 for Electric Car or 2 for Electric Motorcycle.");
                     return;
             }
 
-            System.out.println("Press '1' to calculate cost without charging or '2' to calculate cost with charging.");
+            System.out.println("Press '1' to calculate cost without charging, '2' to calculate cost with charging, or '3' to calculate cost with vehicle wash:");
             System.out.print("Enter your choice: ");
             int userChoice = input.nextInt();
 
@@ -89,15 +91,20 @@ public class electric {
                     parkingDurationHours = totalHours;
                     System.out.println("Charging started...");
                     break;
+                case 3:
+                    parkingDurationHours = totalHours;
+                    System.out.println("Vehicle wash started...");
+                    break;
                 default:
-                    System.out.println("Invalid choice. Please enter '1' or '2'.");
+                    System.out.println("Invalid choice. Please enter '1', '2', or '3'.");
                     return;
             }
 
             double parkingCost = parkingDurationHours * parkingPrice;
             double chargingCost = (userChoice == 2) ? parkingDurationHours * chargingRate : 0;
+            double washCost = (userChoice == 3) ? washPrice : 0;
 
-            double totalCost = parkingCost + chargingCost;
+            double totalCost = parkingCost + chargingCost + washCost;
 
             double discount = 0.0;
             if (isMember) {
@@ -115,8 +122,7 @@ public class electric {
             }
 
             totalCost -= discount;
-            double discountAmount = totalCost - (parkingCost + chargingCost);
-
+            double discountAmount = totalCost - (parkingCost + chargingCost + washCost);
 
             System.out.println("==============================================================");
             System.out.println("Membership Type   : " + membershipType);
@@ -125,9 +131,11 @@ public class electric {
             if (userChoice == 2) {
                 System.out.println("Charging Duration: " + parkingDurationHours + " hours");
                 System.out.println("Charging Cost   : Rp " + chargingCost);
+            } else if (userChoice == 3) {
+                System.out.println("Vehicle Wash Cost : Rp " + washCost);
             }
             System.out.println("==============================================================");
-            System.out.println("Total Cost: " + totalCost);
+            System.out.println("Total Cost        : Rp " + totalCost);
             System.out.println("Discount Amount   : Rp " + discountAmount);
             System.out.println("==============================================================");
 
