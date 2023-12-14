@@ -14,9 +14,22 @@ public class electric {
         do {
             System.out.println("Input name user");
             name = input.next();
+            System.out.println("Input time in (HH:mm): ");
+            String timeIn = input.next();
+            System.out.println("Input time out (HH:mm): ");
+            String timeOut = input.next();
+
+            int hoursIn = Integer.parseInt(timeIn.split(":")[0]);
+            int minutesIn = Integer.parseInt(timeIn.split(":")[1]);
+            int hoursOut = Integer.parseInt(timeOut.split(":")[0]);
+            int minutesOut = Integer.parseInt(timeOut.split(":")[1]);
+
+            // Calculate total parking duration in hours
+            double totalHours = (hoursOut - hoursIn) + (double) (minutesOut - minutesIn) / 60;
+
             System.out.println("Do you have a membership? (yes/no):");
             isMember = input.next().equalsIgnoreCase("yes");
-
+            
             String membershipType = "Non-Member";
 
             if (isMember) {
@@ -69,12 +82,10 @@ public class electric {
 
             switch (userChoice) {
                 case 1:
-                    System.out.print("Enter parking duration (in hours): ");
-                    parkingDurationHours = input.nextDouble();
+                    parkingDurationHours = totalHours;
                     break;
                 case 2:
-                    System.out.print("Enter parking duration (in hours): ");
-                    parkingDurationHours = input.nextDouble();
+                    parkingDurationHours = totalHours;
                     System.out.println("Charging started...");
                     break;
                 default:
@@ -112,7 +123,7 @@ public class electric {
             System.out.println("Total Cost: " + totalCost);
             System.out.println("==============================================================");
 
-            System.out.println("Do you want to calculate cost again? (yes/no):");
+            System.out.println("Do you want to calculate input another vehicle ? (yes/no):");
         } while (input.next().equalsIgnoreCase("yes"));
     }
 }
