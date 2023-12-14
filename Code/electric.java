@@ -169,7 +169,6 @@ public class electric {
         } while (input.next().equalsIgnoreCase("yes"));
     }
 
-    // Method to display available parking spaces
     private static void displayAvailableParking(int[][] parkingStatus) {
         for (int i = 0; i < parkingStatus[0].length; i++) {
             if (parkingStatus[0][i] == 0) {
@@ -181,7 +180,6 @@ public class electric {
         System.out.println();
     }
 
-    // Method to select an available parking space
     private static int selectParkingSpace(int[][] parkingStatus) {
         Scanner input = new Scanner(System.in);
         System.out.print("Choose an available parking space (1-" + parkingStatus[0].length + "): ");
