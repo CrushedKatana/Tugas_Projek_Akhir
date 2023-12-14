@@ -86,10 +86,8 @@ public class electric {
                     parkingDurationHours = totalHours;
                     break;
                 case 2:
-                    System.out.println("Enter charging duration in hours: ");
-                    chargingDuration = input.nextDouble();
-                    parkingDurationHours = totalHours + chargingDuration;
-                    System.out.println("Charging started for " + chargingDuration + " hours...");
+                    parkingDurationHours = totalHours;
+                    System.out.println("Charging started...");
                     break;
                 default:
                     System.out.println("Invalid choice. Please enter '1' or '2'.");
@@ -117,6 +115,8 @@ public class electric {
             }
 
             totalCost -= discount;
+            double discountAmount = totalCost - (parkingCost + chargingCost);
+
 
             System.out.println("==============================================================");
             System.out.println("Membership Type   : " + membershipType);
@@ -128,6 +128,7 @@ public class electric {
             }
             System.out.println("==============================================================");
             System.out.println("Total Cost: " + totalCost);
+            System.out.println("Discount Amount   : Rp " + discountAmount);
             System.out.println("==============================================================");
 
             System.out.println("Do you want to calculate input another vehicle ? (yes/no):");
