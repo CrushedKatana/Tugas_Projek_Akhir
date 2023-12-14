@@ -10,6 +10,7 @@ public class electric {
         String name, platenumber;
         boolean isMember = false;
         double parkingDurationHours = 0;
+        double chargingDuration = 0;
 
         do {
             System.out.println("Input name user");
@@ -85,8 +86,10 @@ public class electric {
                     parkingDurationHours = totalHours;
                     break;
                 case 2:
-                    parkingDurationHours = totalHours;
-                    System.out.println("Charging started...");
+                    System.out.println("Enter charging duration in hours: ");
+                    chargingDuration = input.nextDouble();
+                    parkingDurationHours = totalHours + chargingDuration;
+                    System.out.println("Charging started for " + chargingDuration + " hours...");
                     break;
                 default:
                     System.out.println("Invalid choice. Please enter '1' or '2'.");
@@ -99,25 +102,29 @@ public class electric {
             double totalCost = parkingCost + chargingCost;
 
             double discount = 0.0;
-            if (isMember) { // Check the membership status
-                if (membershipType.equals("Regular")) {
-                    discount = totalCost * 0.1;
-                } else if (membershipType.equals("Premium")) {
-                    discount = totalCost * 0.15;
-                } else if (membershipType.equals("Executive")) {
-                    discount = totalCost * 0.2;
+            if (isMember) {
+                switch (membershipType) {
+                    case "Regular":
+                        discount = totalCost * 0.1;
+                        break;
+                    case "Premium":
+                        discount = totalCost * 0.15;
+                        break;
+                    case "Executive":
+                        discount = totalCost * 0.2;
+                        break;
                 }
             }
 
             totalCost -= discount;
 
             System.out.println("==============================================================");
-            System.out.println("Membership Type: " + membershipType);
-            System.out.println("Parking Duration: " + parkingDurationHours + " hours");
-            System.out.println("Parking Cost: Rp" + parkingCost);
+            System.out.println("Membership Type   : " + membershipType);
+            System.out.println("Parking Duration  : " + parkingDurationHours + " hours");
+            System.out.println("Parking Cost      : Rp " + parkingCost);
             if (userChoice == 2) {
                 System.out.println("Charging Duration: " + parkingDurationHours + " hours");
-                System.out.println("Charging Cost: Rp" + chargingCost);
+                System.out.println("Charging Cost   : Rp " + chargingCost);
             }
             System.out.println("==============================================================");
             System.out.println("Total Cost: " + totalCost);
