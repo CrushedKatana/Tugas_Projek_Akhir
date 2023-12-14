@@ -2,15 +2,22 @@
 import java.util.Scanner;
 
 public class electric {
+    private static final int motorcycleSpaces = 20;
+    private static final int carSpaces = 25;
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
- // VARIABLES
+        // VARIABLES
         double parkingPrice, chargingRate, washPrice;
         String name, platenumber;
         boolean isMember = false;
         double parkingDurationHours = 0;
         double chargingDuration = 0;
+
+        // Arrays
+        int[][] motorcycleParkingStatus = new int[1][motorcycleSpaces];
+        int[][] carParkingStatus = new int[1][carSpaces];
 
         do {
             System.out.println("Input name user");
@@ -65,7 +72,14 @@ public class electric {
                     parkingPrice = 5000.0; // parking price for electric cars
                     chargingRate = 1000.0; // charging rate for electric cars
                     washPrice = 25000.0; // wash price for electric cars
+
+                    // Parking space car
+                    System.out.println("Car Parking Spaces:");
+                    displayAvailableParking(carParkingStatus);
+                    int chosenCarParkingSpace = selectParkingSpace(carParkingStatus);
+                    carParkingStatus[0][chosenCarParkingSpace] = 1; 
                     break;
+
                 case 2:
                     System.out.println("You chose an Electric Motorcycle.");
                     System.out.println("Input plate number");
@@ -73,7 +87,14 @@ public class electric {
                     parkingPrice = 2000.0; // parking price for electric motorcycles
                     chargingRate = 500.0; // charging rate for electric motorcycles
                     washPrice = 15000.0; // wash price for electric motorcycles
+
+                    // Parking spaces motorcycles
+                    System.out.println("Motorcycle Parking Spaces:");
+                    displayAvailableParking(motorcycleParkingStatus);
+                    int chosenMotorcycleParkingSpace = selectParkingSpace(motorcycleParkingStatus);
+                    motorcycleParkingStatus[0][chosenMotorcycleParkingSpace] = 1; // Mark the selected space as occupied
                     break;
+
                 default:
                     System.out.println("Invalid choice. Please choose 1 for Electric Car or 2 for Electric Motorcycle.");
                     return;
@@ -87,14 +108,17 @@ public class electric {
                 case 1:
                     parkingDurationHours = totalHours;
                     break;
+
                 case 2:
                     parkingDurationHours = totalHours;
                     System.out.println("Charging started...");
                     break;
+
                 case 3:
                     parkingDurationHours = totalHours;
                     System.out.println("Vehicle wash started...");
                     break;
+
                 default:
                     System.out.println("Invalid choice. Please enter '1', '2', or '3'.");
                     return;
@@ -112,9 +136,11 @@ public class electric {
                     case "Regular":
                         discount = totalCost * 0.1;
                         break;
+
                     case "Premium":
                         discount = totalCost * 0.15;
                         break;
+                        
                     case "Executive":
                         discount = totalCost * 0.2;
                         break;
@@ -141,5 +167,31 @@ public class electric {
 
             System.out.println("Do you want to calculate input another vehicle ? (yes/no):");
         } while (input.next().equalsIgnoreCase("yes"));
+    }
+
+    // Method to display available parking spaces
+    private static void displayAvailableParking(int[][] parkingStatus) {
+        for (int i = 0; i < parkingStatus[0].length; i++) {
+            if (parkingStatus[0][i] == 0) {
+                System.out.print(i + 1 + " ");
+            } else {
+                System.out.print("X ");
+            }
+        }
+        System.out.println();
+    }
+
+    // Method to select an available parking space
+    private static int selectParkingSpace(int[][] parkingStatus) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Choose an available parking space (1-" + parkingStatus[0].length + "): ");
+        int chosenParkingSpace = input.nextInt();
+
+        if (chosenParkingSpace < 1 || chosenParkingSpace > parkingStatus[0].length || parkingStatus[0][chosenParkingSpace - 1] == 1) {
+            System.out.println("Invalid choice or parking space already occupied. Please choose again.");
+            return selectParkingSpace(parkingStatus);
+        }
+
+        return chosenParkingSpace - 1;
     }
 }
