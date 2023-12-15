@@ -1,9 +1,33 @@
 import java.util.Scanner;
 
 public class motorcycle {
+    // Define a class to represent motorcycle data
+        class Motorcycleparking{
+        static String[] userName = new String[50];
+        static String[] licensePlate = new String[50];
+        static String[] bikeType = new String[50];
+        static String[] membershipType = new String[50]; 
+        static double[] totalCost = new double[50];  
+        
+        static int idxuserName = -1;
+        static int idxlicensePlate = -1;
+        static int idxbiketype = -1;
+        static int idxmembershipType = -1; 
+        static int idxtotalCost = -1; 
+    }
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
- do {
+
+        // Total number of parking spaces
+        int totalParkingSpaces = 50;
+
+        // Matrix to store parking status (0: empty, 1: occupied)
+        int[][] parkingStatus = new int[totalParkingSpaces][2];
+
+        
+
+        do {
             double totalCost, motorcycleParkingFee = 2000, parkingDuration, helmetStorageCost = 0, motorcycleStorageCostWash = 0;
             String userName, bikeType, licensePlate;
             boolean isHelmetStored, isMember, isMotorcycleWash;
@@ -14,18 +38,20 @@ public class motorcycle {
             userName = input.next();
             System.out.println("Enter license plate number:");
             licensePlate = input.next();
+            System.out.println("Enter bike type:");
+            bikeType = input.next();    
             System.out.println("Enter time in (HH:mm): ");
             timeIn = input.next();
             System.out.println("Enter time out (HH:mm): ");
             timeOut = input.next();
 
-            // Parse waktu masuk dan waktu keluar
+            // Parsing time in and time out
             int hoursIn = Integer.parseInt(timeIn.split(":")[0]);
             int minutesIn = Integer.parseInt(timeIn.split(":")[1]);
             int hoursOut = Integer.parseInt(timeOut.split(":")[0]);
             int minutesOut = Integer.parseInt(timeOut.split(":")[1]);
 
-            // Menghitung total jam parkir
+            // Calculating total parking hours
             double totalHours = (hoursOut - hoursIn) + (double) (minutesOut - minutesIn) / 60;
 
             if (totalHours <= 5) {
@@ -73,20 +99,15 @@ public class motorcycle {
                 }
             }
 
-            // Parking time
-            System.out.println("Enter parking duration (hours):");
-            parkingDuration = input.nextDouble();
-
-            if (parkingDuration <= 5) {
-                totalCost = motorcycleParkingFee * parkingDuration;
-            } else {
-                totalCost = (motorcycleParkingFee * 5) + (motorcycleParkingFee * (parkingDuration - 5));
-            }
-
-            // Total harga penitipan helm + harga parkir
+            // Total cost of helmet storage + parking fee
             if (isHelmetStored) {
                 totalCost += helmetStorageCost;
                 System.out.println("Helmet storage cost: " + helmetStorageCost);
+            }
+
+            if (isMotorcycleWash) {
+                totalCost += motorcycleStorageCostWash;
+                System.out.println(" Motorcycle storage cost: " + motorcycleStorageCostWash);
             }
 
             // Membership
@@ -132,13 +153,60 @@ public class motorcycle {
                     System.out.println("Membership discount: " + discount3);
                     break;
             }
-
+            
             System.out.println("Membership Type: " + membershipType);
             System.out.println("Total Cost: " + totalCost);
 
-            System.out.println("Do you want to enter another record? (yes/no): ");
+            // Display available parking spaces
+            System.out.println("Available parking spaces:");
+            displayAvailableParking(parkingStatus);
+
+            // Select parking space
+            int chosenParkingSpace = selectParkingSpace(parkingStatus);
+            if (chosenParkingSpace == -1) {
+                System.out.println("All parking spaces are occupied. Cannot proceed.");
+                return;
+            }
+
+            // Mark parking space as occupied
+            parkingStatus[chosenParkingSpace][1] = 1;
+
+           
+
+            System.out.println("Do you want to enter another motorcycle? (yes/no): ");
         } while (input.next().equalsIgnoreCase("yes"));
 
-        input.close();
+        
+    }
+
+    // Your existing methods for displayAvailableParking and selectParkingSpace
+    // Method to display available parking spaces
+    private static void displayAvailableParking(int[][] parkingStatus) {
+        for (int i = 0; i < parkingStatus.length; i++) {
+            if (parkingStatus[i][1] == 0) {
+                System.out.print(i + 1 + " ");
+            } else {
+                System.out.print("X ");
+            }
+
+            if ((i + 1) % 10 == 0) {
+                System.out.println(); // Move to the next line every 10 parking spaces
+            }
+        }
+        System.out.println();
+    }
+
+    // Method to select an available parking space
+    private static int selectParkingSpace(int[][] parkingStatus) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Choose an available parking space (1-" + parkingStatus.length + "): ");
+        int chosenParkingSpace = input.nextInt();
+
+        if (chosenParkingSpace < 1 || chosenParkingSpace > parkingStatus.length || parkingStatus[chosenParkingSpace - 1][1] == 1) {
+            System.out.println("Invalid choice or parking space already occupied. Please choose again.");
+            return selectParkingSpace(parkingStatus); // Recursion if the choice is invalid or the parking space is already occupied
+        }
+
+        return chosenParkingSpace - 1; // Return the matrix index (starting from 0)
     }
 }

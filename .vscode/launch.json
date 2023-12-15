@@ -6,6 +6,21 @@
     "configurations": [
         {
             "type": "java",
+<<<<<<< HEAD
+<<<<<<< HEAD
+            "name": "Sistem_parkir$Parkir",
+            "request": "launch",
+            "mainClass": "Sistem_parkir$Parkir",
+            "projectName": "Tugas_Projek_Akhir_4521917f"
+        },
+        {
+            "type": "java",
+            "name": "sepeda$Parkir",
+            "request": "launch",
+            "mainClass": "sepeda$Parkir",
+            "projectName": "Tugas_Projek_Akhir_4521917f"
+=======
+=======
             "name": "electric",
             "request": "launch",
             "mainClass": "electric",
@@ -20,16 +35,28 @@
         },
         {
             "type": "java",
+>>>>>>> upstream/devel
             "name": "Electric",
             "request": "launch",
             "mainClass": "Electric",
             "projectName": "Tugas_Projek_Akhir_f77e5ae8"
+>>>>>>> upstream/devel
         },
         {
             "type": "java",
             "name": "sepeda",
             "request": "launch",
             "mainClass": "sepeda",
+<<<<<<< HEAD
+            "projectName": "Tugas_Projek_Akhir_4521917f"
+        },
+        {
+            "type": "java",
+            "name": "Sistem_parkir",
+            "request": "launch",
+            "mainClass": "Sistem_parkir",
+            "projectName": "Tugas_Projek_Akhir_4521917f"
+=======
             "projectName": "Tugas_Projek_Akhir_f77e5ae8"
         },
         {
@@ -45,6 +72,7 @@
             "request": "launch",
             "mainClass": "electric",
             "projectName": "Tugas_Projek_Akhir_f77e5ae8"
+>>>>>>> upstream/devel
         },
         {
             "type": "java",
