@@ -29,9 +29,9 @@ public class sepeda {
         
 
         do {
-            double totalCost, motorcycleParkingFee = 2000, parkingDuration, helmetStorageCost = 0, motorcycleStorageCostWash = 0;
+            double totCost, motorcycleParkingFee = 2000, parkingDuration, helmetStorageCost = 0, motorcycleStorageCostWash = 0;
             boolean isHelmetStored, isMember, isMotorcycleWash;
-            String membershipType = "";
+            String memberType = "";
             String timeIn, timeOut;
 
             idxuserName++;
@@ -60,9 +60,9 @@ public class sepeda {
             double totalHours = (hoursOut - hoursIn) + (double) (minutesOut - minutesIn) / 60;
 
             if (totalHours <= 5) {
-                totalCost = motorcycleParkingFee * totalHours;
+                totCost = motorcycleParkingFee * totalHours;
             } else {
-                totalCost = (motorcycleParkingFee * 5) + (motorcycleParkingFee * (totalHours - 5));
+                totCost = (motorcycleParkingFee * 5) + (motorcycleParkingFee * (totalHours - 5));
             }
 
             System.out.println("Helmet drop off? (yes/no): ");
@@ -106,54 +106,56 @@ public class sepeda {
 
             // Total cost of helmet storage + parking fee
             if (isHelmetStored) {
-                totalCost += helmetStorageCost;
+                totCost += helmetStorageCost;
                 System.out.println("Helmet storage cost: " + helmetStorageCost);
             }
 
             if (isMotorcycleWash) {
-                totalCost += motorcycleStorageCostWash;
+                totCost += motorcycleStorageCostWash;
                 System.out.println("Motorcycle storage cost: " + motorcycleStorageCostWash);
             }
 
             // Membership
             System.out.println("Is the user a member? (yes/no): ");
             isMember = input.next().equalsIgnoreCase("yes");
+            
 
             if (isMember) {
                 System.out.println("Select membership type (1 = Regular, 2 = Premium, 3 = Executive): ");
                 int membershipChoice = input.nextInt();
                 switch (membershipChoice) {
                     case 1:
-                        membershipType = "Regular";
+                        memberType = "Regular";
                         break;
                     case 2:
-                        membershipType = "Premium";
+                        memberType = "Premium";
                         break;
                     case 3:
-                        membershipType = "Executive";
+                        memberType = "Executive";
                         break;
                     default:
                         System.out.println("Invalid membership type. Use 1 for Regular, 2 for Premium, or 3 for Executive.");
                         return;
                 }
             }
+            membershipType[idxmembershipType] = ""+memberType;
 
-            switch (membershipType) {
+            switch (memberType) {
                 case "Regular":
-                    double discount = totalCost * 0.1;
-                    totalCost -= discount;
+                    double discount = totCost * 0.1;
+                    totCost -= discount;
                     System.out.println("Membership status: Regular");
                     System.out.println("Membership discount: " + discount);
                     break;
                 case "Premium":
-                    double discount2 = totalCost * 0.15;
-                    totalCost -= discount2;
+                    double discount2 = totCost * 0.15;
+                    totCost -= discount2;
                     System.out.println("Membership status: Premium");
                     System.out.println("Membership discount: " + discount2);
                     break;
                 case "Executive":
-                    double discount3 = totalCost * 0.2;
-                    totalCost -= discount3;
+                    double discount3 = totCost * 0.2;
+                    totCost -= discount3;
                     System.out.println("Membership status: Executive");
                     System.out.println("Membership discount: " + discount3);
                     break;
@@ -161,6 +163,7 @@ public class sepeda {
             
             System.out.println("Membership Type: " + membershipType);
             System.out.println("Total Cost: " + totalCost);
+            totalCost[idxtotalCost] = totCost;
 
             // Display available parking spaces
             System.out.println("Available parking spaces:");
@@ -195,13 +198,13 @@ public class sepeda {
             idxUname = i;
             break;
         }
-         System.out.println("Membership Type: " + membershipType[idxUname]);
-         System.out.println("Total Cost: " + totalCost[idxUname]);
+         
       }    
       System.out.println("Username = "+userName[idxUname]);
       System.out.println("License Plate = "+licensePlate[idxUname]);
       System.out.println("Bike Type = "+bikeType[idxUname]);
-    
+      System.out.println("Membership Type: " + membershipType[idxUname]);
+      System.out.println("Total Cost: " + totalCost[idxUname]);
 
       
     }
