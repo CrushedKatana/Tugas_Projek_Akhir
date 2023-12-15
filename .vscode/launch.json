@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "electric",
+            "request": "launch",
+            "mainClass": "electric",
+            "projectName": "Tugas_Projek_Akhir_82f2c6e9"
+        },
+        {
+            "type": "java",
+            "name": "Sistem_parkir",
+            "request": "launch",
+            "mainClass": "Sistem_parkir",
+            "projectName": "Tugas_Projek_Akhir_82f2c6e9"
+        },
+        {
+            "type": "java",
             "name": "Electric",
             "request": "launch",
             "mainClass": "Electric",
