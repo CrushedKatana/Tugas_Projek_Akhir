@@ -15,17 +15,6 @@ public class Sistem_parkir{
         static int idxmembershipType = -1; 
         static int idxtotalCost = -1;
 
-        static String[] usernameElectric = new String[50];
-        static String[] licensePlateElectric = new String[50];
-        static String[] membershipTypeElectric = new String[50];
-        static double[] totalCostElectric = new double[50];
-        
-
-        static int idxuserNameElectric = -1;
-        static int idxlicensePlateElectric = -1;
-        static int idxmembershipTypeElectric = -1;
-        static int idxtotalCostElectric = -1;
-
     
 
     public static void main(String[] args) {
@@ -457,7 +446,6 @@ public class Sistem_parkir{
         static int idxtotalCostElectric = -1;
 
         private static void parkElectric(Scanner input) {
-
 
         // VARIABLES
         double parkingPrice, chargingRate, washPrice;
