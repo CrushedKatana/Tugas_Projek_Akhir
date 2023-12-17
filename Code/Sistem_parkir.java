@@ -534,7 +534,6 @@ public class Sistem_parkir{
                     int chosenMotorcycleParkingSpace = selectParkingSpace(motorcycleParkingStatus);
                     motorcycleParkingStatus[0][chosenMotorcycleParkingSpace] = 1; // Mark the selected space as occupied
                     break;
-
                 default:
                     System.out.println("Invalid choice. Please choose 1 for Electric Car or 2 for Electric Motorcycle.");
                     return;
