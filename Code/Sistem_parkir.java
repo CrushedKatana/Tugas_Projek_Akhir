@@ -634,9 +634,6 @@ public class Sistem_parkir{
                 return selectParkingSpace(parkingStatus);
             }
             return chosenParkingSpace - 1;
-    }//charel :)
+        }//charel :)
 }
-    
-
-
     
