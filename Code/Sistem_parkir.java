@@ -605,8 +605,6 @@ public class Sistem_parkir{
             double discountAmount = totalCost - (parkingCost + chargingCost + washCost);
 
             finalPriceInformationDisplay(userChoice, parkingDurationHours, parkingCost, chargingCost, washCost, totalCost, discountAmount, idxmembershipTypeElectric);
-
-
             
     }
 
