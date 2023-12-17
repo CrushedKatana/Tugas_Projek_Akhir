@@ -635,7 +635,6 @@ public class Sistem_parkir{
             System.out.println("Invalid choice or parking space already occupied. Please choose again.");
             return selectParkingSpace(parkingStatus);
         }
-
         return chosenParkingSpace - 1;
     }//charel :)
 }
