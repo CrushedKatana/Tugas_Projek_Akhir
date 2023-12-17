@@ -29,12 +29,13 @@ public class electric {
         int[][] motorcycleParkingStatus = new int[1][motorcycleSpacesElectric];
         int[][] carParkingStatus = new int[1][carSpacesElectric];
 
-        do {
+        
             idxuserNameElectric++;
             idxlicensePlateElectric++;
             idxmembershipTypeElectric++;
             idxtotalCostElectric++;
-
+        
+            do{
             System.out.print("Input username : ");
             userNameElectric[idxuserNameElectric] = input.next();
             System.out.print("Input license plate : ");
@@ -72,7 +73,7 @@ public class electric {
                     default:
                         System.out.println("Invalid membership type. Use 1 for Regular, 2 for Premium, or 3 for Executive.");
                         return;
-                }
+}
             }
 
             System.out.println("Choose a vehicle: ");
@@ -139,6 +140,7 @@ public class electric {
             double parkingCost = parkingDurationHours * parkingPrice;
             double chargingCost = (userChoice == 2) ? parkingDurationHours * chargingRate : 0;
             double washCost = (userChoice == 3) ? washPrice : 0;
+            membershipTypeElectric[idxmembershipTypeElectric] = membershipType;
 
             double totalCost = parkingCost + chargingCost + washCost;
 
@@ -162,18 +164,19 @@ public class electric {
             totalCost -= discount;
             double discountAmount = totalCost - (parkingCost + chargingCost + washCost);
 
-            finalPriceInformationDisplay(userChoice, parkingDurationHours, parkingCost, chargingCost, washCost, totalCost, discountAmount);
+            finalPriceInformationDisplay(userChoice, parkingDurationHours, parkingCost, chargingCost, washCost, totalCost, discountAmount, idxmembershipTypeElectric);
+
 
             System.out.println("Do you want to calculate input another vehicle ? (yes/no):");
             input.nextLine();
-        } while (input.next().equalsIgnoreCase("yes"));
+        } while (input.next().equalsIgnoreCase("yes"));    
     }
 
-    private static void finalPriceInformationDisplay(int userChoice, double parkingDurationHours, double parkingCost, double chargingCost, double washCost, double totalCost, double discountAmount) {
+    private static void finalPriceInformationDisplay(int userChoice, double parkingDurationHours, double parkingCost, double chargingCost, double washCost, double totalCost, double discountAmount, int idx) {
         System.out.println("==============================================================");
         System.out.println("User Name         : " + userNameElectric[idxuserNameElectric]);
         System.out.println("License Plate     : " + licensePlateElectric[idxlicensePlateElectric]);
-        System.out.println("Membership Type   : " + membershipTypeElectric[idxmembershipTypeElectric]);
+        System.out.println("Membership Type   : " + membershipTypeElectric[idx]);
         System.out.println("Parking Duration  : " + parkingDurationHours + " hours");
         System.out.println("Parking Cost      : Rp " + parkingCost);
         if (userChoice == 2) {
