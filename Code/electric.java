@@ -2,18 +2,18 @@
 import java.util.Scanner;
 
 public class electric {
-    private static final int motorcycleSpaces = 20;
-    private static final int carSpaces = 25;
+    private static final int motorcycleSpacesElectric = 20;
+    private static final int carSpacesElectric = 25;
 
-    static String[] userName = new String[50];
-    static String[] licensePlate = new String[50];
-    static String[] membershipType = new String[50];
-    static double[] totalCost = new double[50];
+    static String[] userNameElectric = new String[50];
+    static String[] licensePlateElectric = new String[50];
+    static String[] membershipTypeElectric = new String[50];
+    static double[] totalCostElectric = new double[50];
 
-    static int idxuserName = -1;
-    static int idxlicensePlate = -1;
-    static int idxmembershipType = -1;
-    static int idxtotalCost = -1;
+    static int idxuserNameElectric = -1;
+    static int idxlicensePlateElectric = -1;
+    static int idxmembershipTypeElectric = -1;
+    static int idxtotalCostElectric = -1;
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -26,19 +26,19 @@ public class electric {
         double chargingDuration = 0;
 
         // Arrays
-        int[][] motorcycleParkingStatus = new int[1][motorcycleSpaces];
-        int[][] carParkingStatus = new int[1][carSpaces];
+        int[][] motorcycleParkingStatus = new int[1][motorcycleSpacesElectric];
+        int[][] carParkingStatus = new int[1][carSpacesElectric];
 
         do {
-            idxuserName++;
-            idxlicensePlate++;
-            idxmembershipType++;
-            idxtotalCost++;
+            idxuserNameElectric++;
+            idxlicensePlateElectric++;
+            idxmembershipTypeElectric++;
+            idxtotalCostElectric++;
 
             System.out.print("Input username : ");
-            userName[idxuserName] = input.next();
+            userNameElectric[idxuserNameElectric] = input.next();
             System.out.print("Input license plate : ");
-            licensePlate[idxlicensePlate] = input.next();
+            licensePlateElectric[idxlicensePlateElectric] = input.next();
 
             System.out.print("Input time in (HH:mm): ");
             String timeIn = input.next();
@@ -171,9 +171,9 @@ public class electric {
 
     private static void finalPriceInformationDisplay(int userChoice, double parkingDurationHours, double parkingCost, double chargingCost, double washCost, double totalCost, double discountAmount) {
         System.out.println("==============================================================");
-        System.out.println("User Name         : " + userName[idxuserName]);
-        System.out.println("License Plate     : " + licensePlate[idxlicensePlate]);
-        System.out.println("Membership Type   : " + membershipType[idxmembershipType]);
+        System.out.println("User Name         : " + userNameElectric[idxuserNameElectric]);
+        System.out.println("License Plate     : " + licensePlateElectric[idxlicensePlateElectric]);
+        System.out.println("Membership Type   : " + membershipTypeElectric[idxmembershipTypeElectric]);
         System.out.println("Parking Duration  : " + parkingDurationHours + " hours");
         System.out.println("Parking Cost      : Rp " + parkingCost);
         if (userChoice == 2) {
