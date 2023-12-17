@@ -501,7 +501,7 @@ public class Sistem_parkir{
                     default:
                         System.out.println("Invalid membership type. Use 1 for Regular, 2 for Premium, or 3 for Executive.");
                         return;
-}
+                }
             }
 
             System.out.println("Choose a vehicle: ");
@@ -522,7 +522,6 @@ public class Sistem_parkir{
                     int chosenCarParkingSpace = selectParkingSpace(carParkingStatus);
                     carParkingStatus[0][chosenCarParkingSpace] = 1;
                     break;
-
                 case 2:
                     System.out.println("You chose an Electric Motorcycle.");
                     parkingPrice = 2000.0; // parking price for electric motorcycles
@@ -592,50 +591,49 @@ public class Sistem_parkir{
             totalCost -= discount;
             double discountAmount = totalCost - (parkingCost + chargingCost + washCost);
 
-            finalPriceInformationDisplay(userChoice, parkingDurationHours, parkingCost, chargingCost, washCost, totalCost, discountAmount, idxmembershipTypeElectric);
-            
-    }
-
-    private static void finalPriceInformationDisplay(int userChoice, double parkingDurationHours, double parkingCost, double chargingCost, double washCost, double totalCost, double discountAmount, int idx) {
-        System.out.println("==============================================================");
-        System.out.println("User Name         : " + userNameElectric[idxuserNameElectric]);
-        System.out.println("License Plate     : " + licensePlateElectric[idxlicensePlateElectric]);
-        System.out.println("Membership Type   : " + membershipTypeElectric[idx]);
-        System.out.println("Parking Duration  : " + parkingDurationHours + " hours");
-        System.out.println("Parking Cost      : Rp " + parkingCost);
-        if (userChoice == 2) {
-            System.out.println("Charging Duration: " + parkingDurationHours + " hours");
-            System.out.println("Charging Cost     : Rp " + chargingCost);
-        } else if (userChoice == 3) {
-            System.out.println("Vehicle Wash Cost : Rp " + washCost);
-        }
-        System.out.println("==============================================================");
-        System.out.println("Total Cost        : Rp " + totalCost);
-        System.out.println("Discount Amount   : Rp " + discountAmount);
-        System.out.println("==============================================================");
-    }
-
-    private static void displayAvailableParking(int[][] parkingStatus) {
-        for (int i = 0; i < parkingStatus[0].length; i++) {
-            if (parkingStatus[0][i] == 0) {
-                System.out.print(i + 1 + " ");
-            } else {
-                System.out.print("X ");
+            finalPriceInformationDisplay(userChoice, parkingDurationHours, parkingCost, chargingCost, washCost, totalCost, discountAmount, idxmembershipTypeElectric);   
             }
-        }
-        System.out.println();
-    }
 
-    private static int selectParkingSpace(int[][] parkingStatus) {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Choose an available parking space (1-" + parkingStatus[0].length + "): ");
-        int chosenParkingSpace = input.nextInt();
-
-        if (chosenParkingSpace < 1 || chosenParkingSpace > parkingStatus[0].length || parkingStatus[0][chosenParkingSpace - 1] == 1) {
-            System.out.println("Invalid choice or parking space already occupied. Please choose again.");
-            return selectParkingSpace(parkingStatus);
+        private static void finalPriceInformationDisplay(int userChoice, double parkingDurationHours, double parkingCost, double chargingCost, double washCost, double totalCost, double discountAmount, int idx) {
+            System.out.println("==============================================================");
+            System.out.println("User Name         : " + userNameElectric[idxuserNameElectric]);
+            System.out.println("License Plate     : " + licensePlateElectric[idxlicensePlateElectric]);
+            System.out.println("Membership Type   : " + membershipTypeElectric[idx]);
+            System.out.println("Parking Duration  : " + parkingDurationHours + " hours");
+            System.out.println("Parking Cost      : Rp " + parkingCost);
+            if (userChoice == 2) {
+                System.out.println("Charging Duration: " + parkingDurationHours + " hours");
+                System.out.println("Charging Cost     : Rp " + chargingCost);
+            } else if (userChoice == 3) {
+                System.out.println("Vehicle Wash Cost : Rp " + washCost);
+            }
+            System.out.println("==============================================================");
+            System.out.println("Total Cost        : Rp " + totalCost);
+            System.out.println("Discount Amount   : Rp " + discountAmount);
+            System.out.println("==============================================================");
         }
-        return chosenParkingSpace - 1;
+
+        private static void displayAvailableParking(int[][] parkingStatus) {
+            for (int i = 0; i < parkingStatus[0].length; i++) {
+                if (parkingStatus[0][i] == 0) {
+                    System.out.print(i + 1 + " ");
+                } else {
+                    System.out.print("X ");
+                }
+            }
+            System.out.println();
+        }
+
+        private static int selectParkingSpace(int[][] parkingStatus) {
+            Scanner input = new Scanner(System.in);
+            System.out.print("Choose an available parking space (1-" + parkingStatus[0].length + "): ");
+            int chosenParkingSpace = input.nextInt();
+
+            if (chosenParkingSpace < 1 || chosenParkingSpace > parkingStatus[0].length || parkingStatus[0][chosenParkingSpace - 1] == 1) {
+                System.out.println("Invalid choice or parking space already occupied. Please choose again.");
+                return selectParkingSpace(parkingStatus);
+            }
+            return chosenParkingSpace - 1;
     }//charel :)
 }
     
