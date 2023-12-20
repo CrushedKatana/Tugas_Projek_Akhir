@@ -52,30 +52,6 @@ public class electric {
             int minutesOut = Integer.parseInt(timeOut.split(":")[1]);
             double totalHours = (hoursOut - hoursIn) + (double) (minutesOut - minutesIn) / 60;
 
-            System.out.print("Do you have a membership? (yes/no): ");
-            isMember = input.next().equalsIgnoreCase("yes");
-
-            String membershipType = "Non-Member";
-
-            if (isMember) {
-                System.out.print("Select membership type (1 = Regular(5%), 2 = Premium(10%), 3 = Executive(15%)): ");
-                int membershipChoice = input.nextInt();
-                switch (membershipChoice) {
-                    case 1:
-                        membershipType = "Regular";
-                        break;
-                    case 2:
-                        membershipType = "Premium";
-                        break;
-                    case 3:
-                        membershipType = "Executive";
-                        break;
-                    default:
-                        System.out.println("Invalid membership type. Use 1 for Regular, 2 for Premium, or 3 for Executive.");
-                        return;
-}
-            }
-
             System.out.println("Choose a vehicle: ");
             System.out.println("1. Electric Car");
             System.out.println("2. Electric Motorcycle");
@@ -135,6 +111,29 @@ public class electric {
                 default:
                     System.out.println("Invalid choice. Please enter '1', '2', or '3'.");
                     return;
+            }
+            System.out.print("Do you have a membership? (yes/no): ");
+            isMember = input.next().equalsIgnoreCase("yes");
+
+            String membershipType = "Non-Member";
+
+            if (isMember) {
+                System.out.print("Select membership type (1 = Regular(5%), 2 = Premium(10%), 3 = Executive(15%)): ");
+                int membershipChoice = input.nextInt();
+                switch (membershipChoice) {
+                    case 1:
+                        membershipType = "Regular";
+                        break;
+                    case 2:
+                        membershipType = "Premium";
+                        break;
+                    case 3:
+                        membershipType = "Executive";
+                        break;
+                    default:
+                        System.out.println("Invalid membership type. Use 1 for Regular, 2 for Premium, or 3 for Executive.");
+                        return;
+                }
             }
 
             double parkingCost = parkingDurationHours * parkingPrice;

@@ -432,8 +432,8 @@ public class Sistem_parkir{
         
 
         // Method untuk parkir kendaraan listrik
-        private static final int motorcycleSpacesElectric = 20;
-        private static final int carSpacesElectric = 25;
+        private static final int motorcycleSpacesElectric = 40;
+        private static final int carSpacesElectric = 20;
 
         static String[] userNameElectric = new String[50];
         static String[] licensePlateElectric = new String[50];
@@ -448,6 +448,7 @@ public class Sistem_parkir{
         private static void parkElectric(Scanner input) {
 
         // VARIABLES
+        do{
         double parkingPrice, chargingRate, washPrice;
         String name, platenumber;
         boolean isMember = false;
@@ -479,30 +480,6 @@ public class Sistem_parkir{
             int hoursOut = Integer.parseInt(timeOut.split(":")[0]);
             int minutesOut = Integer.parseInt(timeOut.split(":")[1]);
             double totalHours = (hoursOut - hoursIn) + (double) (minutesOut - minutesIn) / 60;
-
-            System.out.print("Do you have a membership? (yes/no): ");
-            isMember = input.next().equalsIgnoreCase("yes");
-
-            String membershipType = "Non-Member";
-
-            if (isMember) {
-                System.out.print("Select membership type (1 = Regular(5%), 2 = Premium(10%), 3 = Executive(15%)): ");
-                int membershipChoice = input.nextInt();
-                switch (membershipChoice) {
-                    case 1:
-                        membershipType = "Regular";
-                        break;
-                    case 2:
-                        membershipType = "Premium";
-                        break;
-                    case 3:
-                        membershipType = "Executive";
-                        break;
-                    default:
-                        System.out.println("Invalid membership type. Use 1 for Regular, 2 for Premium, or 3 for Executive.");
-                        return;
-                }
-            }
 
             System.out.println("Choose a vehicle: ");
             System.out.println("1. Electric Car");
@@ -539,7 +516,7 @@ public class Sistem_parkir{
                     return;
             }
 
-            System.out.println("Press '1' to calculate cost without charging, '2' to calculate cost with charging, or '3' to calculate cost with vehicle wash:");
+            System.out.println("Press '1' to calculate cost without charging, '2' to calculate cost with charging, or '3' to calculate cost with vehicle wash");
             System.out.print("Enter your choice: ");
             int userChoice = input.nextInt();
 
@@ -561,6 +538,30 @@ public class Sistem_parkir{
                 default:
                     System.out.println("Invalid choice. Please enter '1', '2', or '3'.");
                     return;
+            }
+
+            System.out.print("Do you have a membership? (yes/no): ");
+            isMember = input.next().equalsIgnoreCase("yes");
+
+            String membershipType = "Non-Member";
+
+            if (isMember) {
+                System.out.print("Select membership type (1 = Regular(5%), 2 = Premium(10%), 3 = Executive(15%)): ");
+                int membershipChoice = input.nextInt();
+                switch (membershipChoice) {
+                    case 1:
+                        membershipType = "Regular";
+                        break;
+                    case 2:
+                        membershipType = "Premium";
+                        break;
+                    case 3:
+                        membershipType = "Executive";
+                        break;
+                    default:
+                        System.out.println("Invalid membership type. Use 1 for Regular, 2 for Premium, or 3 for Executive.");
+                        return;
+                }
             }
 
             double parkingCost = parkingDurationHours * parkingPrice;
@@ -591,6 +592,9 @@ public class Sistem_parkir{
             double discountAmount = totalCost - (parkingCost + chargingCost + washCost);
 
             finalPriceInformationDisplay(userChoice, parkingDurationHours, parkingCost, chargingCost, washCost, totalCost, discountAmount, idxmembershipTypeElectric);   
+                System.out.println("Do you want to calculate input another electric vehicle ? (yes/no):");
+                input.nextLine();
+                } while (input.next().equalsIgnoreCase("yes"));    
             }
 
         private static void finalPriceInformationDisplay(int userChoice, double parkingDurationHours, double parkingCost, double chargingCost, double washCost, double totalCost, double discountAmount, int idx) {
