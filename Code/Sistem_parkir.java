@@ -93,10 +93,12 @@ public class Sistem_parkir{
             licensePlate[idxlicensePlate] = input.next();
             System.out.print("Input bike type = ");
             bikeType[idxbiketype] = input.next(); 
+            System.out.println("==============================================================");
             System.out.println("Enter time in (HH:mm): ");
             timeIn = input.next();
             System.out.println("Enter time out (HH:mm): ");
             timeOut = input.next();
+            System.out.println("==============================================================");
 
             // Parsing time in and time out
             int hoursIn = Integer.parseInt(timeIn.split(":")[0]);
@@ -134,6 +136,7 @@ public class Sistem_parkir{
             }
 
             // Motorcycle wash
+            System.out.println("==============================================================");
             System.out.println("Want to wash your motorcycle? (yes/no): ");
             isMotorcycleWash = input.next().equalsIgnoreCase("yes");
 
@@ -155,12 +158,14 @@ public class Sistem_parkir{
             // Total cost of helmet storage + parking fee
             if (isHelmetStored) {
                 totCost += helmetStorageCost;
+                System.out.println("==============================================================");
                 System.out.println("Helmet storage cost: " + helmetStorageCost);
             }
 
             if (isMotorcycleWash) {
                 totCost += motorcycleStorageCostWash;
                 System.out.println("Motorcycle storage cost: " + motorcycleStorageCostWash);
+                System.out.println("==============================================================");
             }
 
             // Membership
@@ -208,12 +213,10 @@ public class Sistem_parkir{
                     System.out.println("Membership discount: " + discount3);
                     break;
             }
-            
-            System.out.println("Membership Type: " + membershipType);
-            System.out.println("Total Cost: " + totalCost);
             totalCost[idxtotalCost] = totCost;
 
             // Display available parking spaces
+            System.out.println("==============================================================");
             System.out.println("Available parking spaces:");
             displayAvailableParking(parkingStatus);
 
@@ -248,12 +251,16 @@ public class Sistem_parkir{
         }
          
       }    
+      System.out.println("====================Parking Data Motorcycle======================");
       System.out.println("Username = "+userName[idxUname]);
       System.out.println("License Plate = "+licensePlate[idxUname]);
       System.out.println("Bike Type = "+bikeType[idxUname]);
+      
+
+      System.out.println("==============================================================");
       System.out.println("Membership Type: " + membershipType[idxUname]);
       System.out.println("Total Cost: " + totalCost[idxUname]);
-
+      System.out.println("==============================================================");
       
     }
 
