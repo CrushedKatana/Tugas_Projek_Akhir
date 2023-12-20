@@ -292,7 +292,19 @@ public class Sistem_parkir{
     
 
     // Method untuk parkir mobil
-    private static void parkCar(Scanner input) {
+    class parkingsystemcar{
+        static String[] userName = new String[50];
+        static String[] licensePlate = new String[50];
+        static String[] carType = new String[50];
+        static String[] membershipType = new String[50]; 
+        static double[] totalCost = new double[50];  
+        
+        static int idxuserName = -1;
+        static int idxlicensePlate = -1;
+        static int idxmembershipType = -1; 
+        static int idxtotalCost = -1;
+    }
+        private static void parkCar(Scanner input) {
             double totalCost, parkingFee = 5000, washCost = 0, airInflateCost = 2000;
             boolean isCarWash, isAirInflate, isMember;
             String userName, carType, licensePlate, membershipType = "";
