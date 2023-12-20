@@ -8,6 +8,7 @@ public class sepeda {
         static String[] bikeType = new String[50];
         static String[] membershipType = new String[50]; 
         static double[] totalCost = new double[50];  
+
         
         static int idxuserName = -1;
         static int idxlicensePlate = -1;
@@ -160,9 +161,7 @@ public class sepeda {
                     System.out.println("Membership discount: " + discount3);
                     break;
             }
-            
-            System.out.println("Membership Type: " + membershipType);
-            System.out.println("Total Cost: " + totalCost);
+           
             totalCost[idxtotalCost] = totCost;
 
             // Display available parking spaces
@@ -199,14 +198,18 @@ public class sepeda {
             break;
         }
          
-      }    
+      }   
+      System.out.println("====================Parking Data Motorcycle======================");
       System.out.println("Username = "+userName[idxUname]);
       System.out.println("License Plate = "+licensePlate[idxUname]);
       System.out.println("Bike Type = "+bikeType[idxUname]);
+      
+
+      System.out.println("==============================================================");
       System.out.println("Membership Type: " + membershipType[idxUname]);
       System.out.println("Total Cost: " + totalCost[idxUname]);
-
-      
+      System.out.println("==============================================================");
+    }
     }
 
     // Your existing methods for displayAvailableParking and selectParkingSpace
@@ -240,4 +243,4 @@ public class sepeda {
         return chosenParkingSpace - 1; // Return the matrix index (starting from 0)
     }
   }
-}
+
