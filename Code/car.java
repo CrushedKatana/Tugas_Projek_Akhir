@@ -1,142 +1,133 @@
-import java.util.Scanner;
-public class car {
-    public static void main (String[] args){
-        Scanner input = new Scanner(System.in);
-         //VARIABEL CAR
-         double totalharga , waktu, hargaparkir = 5000,hargacucimobil , tambahangin = 2000;
-         boolean  ingintambahangin, inginmember,ingincucimobil ; 
-         String nama_user, platnomor, tipemobil;
 
-         //sistem pertama
-         System.out.println("Input nama user");
-         nama_user = input.next();
-         System.out.println("Input plat nomor");
-         platnomor = input.next();
-         System.out.println("Tipe mobil");
-         tipemobil = input.next();
-         
-// harga parkir 
-       System.out.println("input jam parkir = ");
-       waktu = input.nextDouble();
-        totalharga = (hargaparkir * waktu);
-        System.out.println("harga parkir =");
+private static void car(Scanner input) {
+    double parkingFee = 5000, washCost = 0, airInflateCost = 2000;
+    boolean isCarWash, isAirInflate, isMember;
+    String userName, carType, licensePlate, membershipType = "";
+    double currentTotalCost = 0; // Rename the variable to avoid conflicts
 
-
-        //tambah angin
-         System.out.println("tambah angin? (true/false)");
-         ingintambahangin = input.nextBoolean();
-            if (ingintambahangin) {
-        totalharga = (tambahangin + totalharga);
-        System.out.println("total pemabayaran = " + totalharga);
-        } else {
-            System.out.println("tidak menambah angin ");
-        }
-        
-        
-        
-         // sistem selection
-         System.out.println("Ingin cuci mobil atau tidak? (true/false)");
-         ingincucimobil = input.nextBoolean();
-         if (ingincucimobil) {
-             System.out.println("Pilih jenis layanan cuci mobil (prem/reg)");
-             String tipeLayanan = input.next();
-             if (tipeLayanan.equalsIgnoreCase("prem")) {
-                 hargacucimobil = 20000;
-             } else if (tipeLayanan.equalsIgnoreCase("reg")) {
-                 hargacucimobil = 30000;
-             } else {
-                 System.out.println("Input tidak valid, gunakan (prem/reg)");
-                 return;
-             }
-             totalharga += hargacucimobil;
-             System.out.println("Harga cuci mobil = " + hargacucimobil);
-         } else {
-             System.out.println("Pengguna tidak ingin melakukan cuci mobil");
-         }
-          System.out.println("total harga parkir = " + totalharga);
-    
-        // menginput member atau tidak member
-          System.out.println("apakah pengguna parkir adalah member? ( true/false)");
-            inginmember = input.nextBoolean();
-
-            // status dari member
-        if (inginmember) {
-            System.out.println("input status member (1 =  executive) ( 2  = premium) (3= reguler)");
-        int statusmember = input.nextInt();
-        if (statusmember == 1) {
-            System.out.println("executive"); ;
-        } else if (statusmember == 2) {
-            System.out.println("premium");;
-        } else if (statusmember == 3) {
-            System.out.println("reguler");;
-        } else {
-            System.out.println("input tidak valid (gunakan angka 1,2,3)");
-        return;
-        }
+    // Initialize an array to track available parking spaces
+    boolean[] availableParkingSpaces = new boolean[50];
+    for (int i = 0; i < availableParkingSpaces.length; i++) {
+        availableParkingSpaces[i] = true;
     }
 
-// jenis status member
-String jenismemberparkir = "";
-if (jenismemberparkir.equals("executive")) {
-    // diskon member parkir executive 20%
-     double diskon = totalharga * 0.2;
-    totalharga -= diskon;
-    System.out.println("status member executive");
-    System.out.println("status member executive " + diskon );
+    do {
+        // Input information
+        System.out.println("Available parking spaces:");
+        displayAvailableSpaces(availableParkingSpaces);
 
-} if (jenismemberparkir.equals("premium")) {
- // diskon member parkir executive 15% 
-double diskon = totalharga * 0.15;
-totalharga -= diskon;
-System.out.println("status premium");
-System.out.println("status member premium " + diskon );
+        System.out.println("Choose an available parking space (1-50): ");
+        int chosenSpace = input.nextInt();
 
-}  if  (jenismemberparkir.equals("reguler")) {
-    // diskon member parkir executive 10%
-    double diskon = totalharga * 0.1;
-    totalharga -= diskon;
-    System.out.println("status member reguler" + jenismemberparkir);
-    System.out.println("status member reguler " + diskon );
+        // Check if the chosen space is valid
+        if (chosenSpace < 1 || chosenSpace > 50 || !availableParkingSpaces[chosenSpace - 1]) {
+            System.out.println("Invalid parking space. Please choose an available space.");
+            continue;
+        }
+
+        // Mark the chosen space as occupied
+        availableParkingSpaces[chosenSpace - 1] = false;
+
+        System.out.println("Enter user name:");
+        userName = input.next();
+        System.out.println("Enter license plate number:");
+        licensePlate = input.next();
+        System.out.println("Car type (sedan/suv): ");
+        carType = input.next();
+        System.out.println("Parking duration (hours):");
+        double parkingDuration = input.nextDouble();
+        System.out.println("Want a car wash? (yes/no): ");
+        isCarWash = input.next().equalsIgnoreCase("yes");
+        System.out.println("Want to inflate the tires? (yes/no): ");
+        isAirInflate = input.next().equalsIgnoreCase("yes");
+
+        // Car wash
+        if (isCarWash) {
+            System.out.println("Choose wash type (prem/reg): ");
+            String washType = input.next();
+            switch (washType.toLowerCase()) {
+                case "prem":
+                    washCost = 30000;
+                    break;
+                case "reg":
+                    washCost = 20000;
+                    break;
+                default:
+                    System.out.println("Invalid wash type. Use 'prem' or 'reg'.");
+                    return;
+            }
+        }
+
+        // Air inflate
+        if (isAirInflate) {
+            currentTotalCost = airInflateCost + parkingFee * parkingDuration;
+        } else {
+            currentTotalCost = parkingFee * parkingDuration;
+        }
+
+        // Car wash cost
+        if (isCarWash) {
+            currentTotalCost += washCost;
+            System.out.println("Car wash cost: " + washCost);
+        }
+
+        // Membership
+        System.out.println("Is the user a member? (yes/no): ");
+        isMember = input.next().equalsIgnoreCase("yes");
+
+        if (isMember) {
+            System.out.println("Select membership type (1 = Regular, 2 = Premium, 3 = Executive): ");
+            int membershipChoice = input.nextInt();
+            switch (membershipChoice) {
+                case 1:
+                    membershipType = "Regular";
+                    break;
+                case 2:
+                    membershipType = "Premium";
+                    break;
+                case 3:
+                    membershipType = "Executive";
+                    break;
+                default:
+                    System.out.println("Invalid membership type. Use 1 for Regular, 2 for Premium, or 3 for Executive.");
+                    return;
+            }
+        }
+
+        // Membership discounts
+        switch (membershipType) {
+            case "Regular":
+                currentTotalCost *= 0.9;
+                System.out.println("Membership status: Regular");
+                System.out.println("Membership discount: 10%");
+                break;
+            case "Premium":
+                currentTotalCost *= 0.85;
+                System.out.println("Membership status: Premium");
+                System.out.println("Membership discount: 15%");
+                break;
+            case "Executive":
+                currentTotalCost *= 0.8;
+                System.out.println("Membership status: Executive");
+                System.out.println("Membership discount: 20%");
+                break;
+        }
+
+        System.out.println("Membership Type: - " + membershipType);
+        System.out.println("Total Cost: " + currentTotalCost);
+
+        // Store user information
+        idxuserName++;
+        idxlicensePlate++;
+        idxcarType++;
+        idxmembershipType++;
+        idxtotalCost++;
+        userName[idxuserName] = userName;
+        licensePlate[idxlicensePlate] = licensePlate;
+        carTypeArray[idxcarType] = carType;
+        membershipTypeArray[idxmembershipType] = membershipType;
+        totalCostArray[idxtotalCost] = currentTotalCost;
+
+        System.out.println("Do you want to enter another record? (yes/no): ");
+    } while (input.next().equalsIgnoreCase("yes"));
 }
- System.out.println("total pembayaran " + totalharga);
- 
- 
-        int maxRows = 3;
-        int maxCols = 5;
-        double[][] totalHargaArray = new double[maxRows][maxCols];
-
-        // Loop to handle multiple vehicles
-        for (int row = 0; row < maxRows; row++) {
-            for (int col = 0; col < maxCols; col++) {
-                parkCar(input, totalHargaArray, row, col);
-            }
-        }
-
-        // Display total prices for all vehicles
-        displayTotalPrices(totalHargaArray);
-    }
-
-    private static void parkCar(Scanner input, double[][] totalHargaArray, int row, int col) {
-        // Existing code for parking a single car goes here.
-
-        // Check if parking area is full
-        if (row == totalHargaArray.length - 1 && col == totalHargaArray[row].length - 1) {
-            System.out.println("Parking area is full. No more vehicles allowed.");
-            System.exit(0); // Terminate the program
-        }
-        
-        // Use totalHargaArray[row][col] to store the total price for each vehicle.
-    }
-
-    private static void displayTotalPrices(double[][] totalHargaArray) {
-        System.out.println("Total Prices for All Vehicles:");
-
-        for (int row = 0; row < totalHargaArray.length; row++) {
-            for (int col = 0; col < totalHargaArray[row].length; col++) {
-                System.out.println("Vehicle at Row " + (row + 1) + ", Col " + (col + 1) +
-                        ": Total Price = " + totalHargaArray[row][col]);
-            }
-        }
-    }
-
-        }

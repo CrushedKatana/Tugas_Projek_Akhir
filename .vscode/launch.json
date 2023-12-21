@@ -51,6 +51,13 @@
             "name": "Sistem_parkir$Parkir",
             "request": "launch",
             "mainClass": "Sistem_parkir$Parkir",
+            "projectName": "Tugas_Projek_Akhir_42b663c7"
+        },
+        {
+            "type": "java",
+            "name": "Sistem_parkir$Parkir",
+            "request": "launch",
+            "mainClass": "Sistem_parkir$Parkir",
             "projectName": "Tugas_Projek_Akhir_82f2c6e9"
         },
         {

@@ -29,17 +29,17 @@ public class Sistem_parkir{
         System.out.println(" ");
         System.out.println(" ");
 
-        System.out.println("Selamat datang di Sistem Parkir");
+        System.out.println("Welcome to the Parking System");
 
         do  {
-            System.out.println("==============================================================");
-            System.out.println("|Pilih jenis kendaraan yang ingin dimasukkan data parkirnya |");
-            System.out.println("==============================================================");
+            System.out.println("======================================================================");
+            System.out.println("|Select the type of vehicle for which you want to enter parking data |");
+            System.out.println("======================================================================");
             System.out.println("1. Motorcycle");
             System.out.println("2. Car");
             System.out.println("3. Electric");
             System.out.println("0. Keluar");
-            System.out.println("==============================================================");
+            System.out.println("======================================================================");
 
             int vehicleChoice = input.nextInt();
 
@@ -54,11 +54,11 @@ public class Sistem_parkir{
                     parkElectric(input);
                     break;
                 case 0:
-                    System.out.println("Terima kasih. Keluar dari program.");
+                    System.out.println("Thank you. Exit the programm.");
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Pilihan tidak valid. Silakan pilih 1 untuk Motorcycle, 2 untuk Car, 3 untuk Electric, atau 0 untuk keluar.");
+                    System.out.println("Invalid selection. Please select 1 for Motorcycle, 2 for Car, 3 for Electric, or 0 to exit.");
             }
          System.out.println("Do you want to enter another vehicle? (yes/no): ");
          } while (input.next().equalsIgnoreCase("yes"));
@@ -299,7 +299,19 @@ public class Sistem_parkir{
     
 
     // Method untuk parkir mobil
-    private static void parkCar(Scanner input) {
+    class parkingsystemcar{
+        static String[] userName = new String[50];
+        static String[] licensePlate = new String[50];
+        static String[] carType = new String[50];
+        static String[] membershipType = new String[50]; 
+        static double[] totalCost = new double[50];  
+        
+        static int idxuserName = -1;
+        static int idxlicensePlate = -1;
+        static int idxmembershipType = -1; 
+        static int idxtotalCost = -1;
+    }
+        private static void parkCar(Scanner input) {
             double totalCost, parkingFee = 5000, washCost = 0, airInflateCost = 2000;
             boolean isCarWash, isAirInflate, isMember;
             String userName, carType, licensePlate, membershipType = "";
@@ -455,7 +467,7 @@ public class Sistem_parkir{
         private static void parkElectric(Scanner input) {
 
         // VARIABLES
-        do{
+        
         double parkingPrice, chargingRate, washPrice;
         String name, platenumber;
         boolean isMember = false;
@@ -472,6 +484,7 @@ public class Sistem_parkir{
             idxmembershipTypeElectric++;
             idxtotalCostElectric++;
 
+            do{
             System.out.print("Input username : ");
             userNameElectric[idxuserNameElectric] = input.next();
             System.out.print("Input license plate : ");
