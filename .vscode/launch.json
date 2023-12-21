@@ -6,6 +6,34 @@
     "configurations": [
         {
             "type": "java",
+            "name": "pp",
+            "request": "launch",
+            "mainClass": "pp",
+            "projectName": "Tugas_Projek_Akhir_ce5f4462"
+        },
+        {
+            "type": "java",
+            "name": "Speda",
+            "request": "launch",
+            "mainClass": "Speda",
+            "projectName": "Tugas_Projek_Akhir_ce5f4462"
+        },
+        {
+            "type": "java",
+            "name": "speda",
+            "request": "launch",
+            "mainClass": "speda",
+            "projectName": "Tugas_Projek_Akhir_ce5f4462"
+        },
+        {
+            "type": "java",
+            "name": "MotorcyclePark",
+            "request": "launch",
+            "mainClass": "MotorcyclePark",
+            "projectName": "Tugas_Projek_Akhir_ce5f4462"
+        },
+        {
+            "type": "java",
             "name": "electric",
             "request": "launch",
             "mainClass": "electric",
