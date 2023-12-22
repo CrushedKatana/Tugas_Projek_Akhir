@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class MotorcyclePark {
+public class speda {
     static Scanner input = new Scanner(System.in);
     static String[] userName = new String[50];
     static String[] licensePlate = new String[50];
@@ -8,14 +8,13 @@ public class MotorcyclePark {
     static int idxuserName = 0;
     static int idxlicensePlate = 0;
     static int[][] parkingStatus = new int[50][2];
-    static int[] vipCount = new int[3];
+    static int[] vipCount = new int[3];  // Adjusted array size for membership types
     static int[] regulerCount = new int[3];
     static int[] biasaCount = new int[3];
     static double motorcycleWashCost = 0;
     static double carWashCost = 0;
     static double tireInflationCost = 0;
 
-    // Constants for parking fees
     static final double MOTORCYCLE_PARKING_FEE = 2000;
     static final double CAR_PARKING_FEE = 5000;
 
@@ -89,7 +88,7 @@ public class MotorcyclePark {
     }
 
     private static void parkMotorcycle() {
-        // Motorcycle 
+        // Motorcycle parking logic here
         int totalParkingSpaces = 50;
 
         // Helmet drop off
@@ -141,10 +140,13 @@ public class MotorcyclePark {
             parkingStatus[availableSlot][1] = idxuserName - 1; // Store user index in the parking slot
             System.out.println("Motorcycle parked successfully in slot " + availableSlot);
 
+            // Calculate parking fee based on parking duration
+            double parkingFee = calculateParkingFee(MOTORCYCLE_PARKING_FEE);
+
             // Apply membership discount
-            double totalCost = calculateTotalCost(helmetStorageCost, motorcycleStorageCostWash, MOTORCYCLE_PARKING_FEE);
+            double totalCost = calculateTotalCost(helmetStorageCost, motorcycleStorageCostWash + motorcycleWashCost, parkingFee);
             System.out.println("Total Parking Cost: " + totalCost);
-            generateReceipt("Motorcycle", helmetStorageCost, motorcycleStorageCostWash, totalCost);
+            generateReceipt("Motorcycle", helmetStorageCost, motorcycleStorageCostWash + motorcycleWashCost, parkingFee, totalCost);
         } else {
             System.out.println("Sorry, parking is full.");
         }
@@ -196,20 +198,25 @@ public class MotorcyclePark {
         // Update parking status
         int availableSlot = findAvailableSlot(parkingStatus);
         if (availableSlot != -1) {
-            parkingStatus[availableSlot][0] = 1; // 
+            parkingStatus[availableSlot][0] = 1; // Mark the parking slot as occupied
             parkingStatus[availableSlot][1] = idxuserName - 1; // Store user index in the parking slot
             System.out.println("Car parked successfully in slot " + availableSlot);
 
+            // Calculate parking fee based on parking duration
+            double parkingFee = calculateParkingFee(CAR_PARKING_FEE);
+
             // Apply membership discount
-            double totalCost = calculateTotalCost(0, carWashCost, CAR_PARKING_FEE);
+            double totalCost = calculateTotalCost(0, carWashCost + tireInflationCost, parkingFee);
             System.out.println("Total Parking Cost: " + totalCost);
-            generateReceipt("Car", 0, carWashCost, totalCost);
+            generateReceipt("Car", 0, carWashCost + tireInflationCost, parkingFee, totalCost);
         } else {
             System.out.println("Sorry, parking is full.");
         }
     }
 
-   
+    private static void parkElectric() {
+        // Electric vehicle parking logic here, if needed
+    }
 
     private static void displayParkingStatus() {
         System.out.println("==============================================================");
@@ -237,7 +244,7 @@ public class MotorcyclePark {
 
     private static double calculateTotalCost(double helmetCost, double washCost, double parkingFee) {
         double totalCost = helmetCost + washCost + parkingFee;
-    
+
         // Apply membership discount
         switch (membershipType[idxuserName - 1]) {
             case "vip":
@@ -249,13 +256,18 @@ public class MotorcyclePark {
             case "biasa":
                 totalCost *= 0.8; // 20% discount
                 break;
-           
+            // You can add more cases for other membership types if needed
         }
-    
+
         return totalCost;
     }
 
-    private static void generateReceipt(String vehicleType, double helmetCost, double washCost, double totalCost) {
+    private static double calculateParkingFee(double baseParkingFee) {
+        // ... (gunakan logika bisnis Anda untuk menghitung biaya parkir berdasarkan durasi parkir atau aturan bisnis lainnya)
+        return baseParkingFee; // Contoh: biaya parkir dihitung sebagai biaya dasar
+    }
+
+    private static void generateReceipt(String vehicleType, double helmetCost, double washCost, double parkingFee, double totalCost) {
         System.out.println("\n=========================== RECEIPT ===========================");
         System.out.println("User Name: " + userName[idxuserName - 1]);
         System.out.println("License Plate: " + licensePlate[idxuserName - 1]);
@@ -280,10 +292,8 @@ public class MotorcyclePark {
             System.out.println("Tire Inflation Cost: " + tireInflationCost);
         }
 
-        // Display parking fee on the receipt
-        System.out.println("Parking Fee: " + (vehicleType.equalsIgnoreCase("Motorcycle") ? MOTORCYCLE_PARKING_FEE : CAR_PARKING_FEE));
-        double totalCosts = CAR_PARKING_FEE + carWashCost + tireInflationCost  ;
-        
+        System.out.println("Parking Fee: " + parkingFee);
+        System.out.println("Total Parking Cost: " + totalCost);
 
         double discount = 0;
         switch (membershipType[idxuserName - 1]) {
@@ -291,7 +301,7 @@ public class MotorcyclePark {
                 discount = 0.1; // 10% discount
                 break;
             case "reguler":
-                discount = 0.15; // 15% discountr
+                discount = 0.15; // 15% discount
                 break;
             case "biasa":
                 discount = 0.2; // 20% discount
@@ -299,12 +309,8 @@ public class MotorcyclePark {
             // Add more cases for other membership types if needed
         }
 
-        double discountAmount = totalCosts * discount;
-        double finalcosts = totalCosts - discountAmount;
-        
-        System.out.println("Final Cost: " + finalcosts);
-      
-      
+        double discountAmount = totalCost * discount;
+        System.out.println("Discount Applied: " + discount * 100 + "% (" + discountAmount + ")");
         System.out.println("==============================================================\n");
     }
 }
