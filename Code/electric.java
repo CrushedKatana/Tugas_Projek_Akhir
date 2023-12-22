@@ -140,9 +140,8 @@ public class electric {
             double chargingCost = (userChoice == 2) ? parkingDurationHours * chargingRate : 0;
             double washCost = (userChoice == 3) ? washPrice : 0;
             membershipTypeElectric[idxmembershipTypeElectric] = membershipType;
-
             double totalCost = parkingCost + chargingCost + washCost;
-
+            
             double discount = 0.0;
             if (isMember) {
                 switch (membershipType) {
@@ -175,11 +174,11 @@ public class electric {
         System.out.println("==============================================================");
         System.out.println("User Name         : " + userNameElectric[idxuserNameElectric]);
         System.out.println("License Plate     : " + licensePlateElectric[idxlicensePlateElectric]);
-        System.out.println("Membership Type   : " + membershipTypeElectric[idx]);
+        System.out.println("Membership Type   : " + membershipTypeElectric[idxmembershipTypeElectric]);
         System.out.println("Parking Duration  : " + parkingDurationHours + " hours");
         System.out.println("Parking Cost      : Rp " + parkingCost);
         if (userChoice == 2) {
-            System.out.println("Charging Duration: " + parkingDurationHours + " hours");
+            System.out.println("Charging Duration : " + parkingDurationHours + " hours");
             System.out.println("Charging Cost     : Rp " + chargingCost);
         } else if (userChoice == 3) {
             System.out.println("Vehicle Wash Cost : Rp " + washCost);
