@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Parking_System",
+            "request": "launch",
+            "mainClass": "Parking_System",
+            "projectName": "Tugas_Projek_Akhir_ce5f4462"
+        },
+        {
+            "type": "java",
             "name": "pp",
             "request": "launch",
             "mainClass": "pp",
