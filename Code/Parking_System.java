@@ -8,14 +8,13 @@ public class Parking_System {
     static int idxuserName = 0;
     static int idxlicensePlate = 0;
     static int[][] parkingStatus = new int[50][2];
-    static int[] vipCount = new int[3];
-    static int[] regulerCount = new int[3];
-    static int[] biasaCount = new int[3];
+    static int[] vipCount = new int[50];  // Adjusted array size for membership types
+    static int[] regulerCount = new int[50];
+    static int[] biasaCount = new int[50];
     static double motorcycleWashCost = 0;
     static double carWashCost = 0;
     static double tireInflationCost = 0;
 
-    
     static final double MOTORCYCLE_PARKING_FEE = 2000;
     static final double CAR_PARKING_FEE = 5000;
 
@@ -37,7 +36,7 @@ public class Parking_System {
         idxuserName++;
         idxlicensePlate++;
 
-        
+        // Increment the count for the corresponding membership type
         switch (membershipType[idxuserName - 1]) {
             case "vip":
                 vipCount[idxuserName - 1]++;
@@ -48,7 +47,7 @@ public class Parking_System {
             case "biasa":
                 biasaCount[idxuserName - 1]++;
                 break;
-            
+            // Add more cases for other membership types if needed
         }
         menukendaraan();
     }
@@ -106,8 +105,8 @@ public class Parking_System {
                 break;
             default:
                 System.out.println("Pilihan tidak valid. Silakan pilih 1 untuk Motorcycle, 2 untuk Car, 3 untuk Electric, 4 untuk Lihat Status Parkir, atau 0 untuk keluar.");
-        }
     }
+}
 
     private static void parkMotorcycle() {
         // Motorcycle parking logic here
@@ -137,11 +136,11 @@ public class Parking_System {
         // Motorcycle wash
         System.out.println("Do you want to wash your motorcycle? (yes/no): ");
         String washChoice = input.next();
-        
+        System.out.println("Choose motorcycle type (matic/manual): ");
+        String motorcycleType = input.next();
+
         double motorcycleStorageCostWash = 0;
         if (washChoice.equalsIgnoreCase("yes")) {
-            System.out.println("Choose motorcycle type (matic/manual): ");
-            String motorcycleType = input.next();
             switch (motorcycleType.toLowerCase()) {
                 case "matic":
                     motorcycleStorageCostWash = 15000;
@@ -162,10 +161,13 @@ public class Parking_System {
             parkingStatus[availableSlot][1] = idxuserName - 1; // Store user index in the parking slot
             System.out.println("Motorcycle parked successfully in slot " + availableSlot);
 
+            // Calculate parking fee based on parking duration
+            double parkingFee = (MOTORCYCLE_PARKING_FEE);
+
             // Apply membership discount
-            double totalCost = calculateTotalCost(helmetStorageCost, motorcycleStorageCostWash, MOTORCYCLE_PARKING_FEE);
+            double totalCost = calculateTotalCost(helmetStorageCost, motorcycleStorageCostWash + motorcycleWashCost, parkingFee);
             System.out.println("Total Parking Cost: " + totalCost);
-            generateReceipt("Motorcycle", helmetStorageCost, motorcycleStorageCostWash, totalCost);
+            generateReceipt("Motorcycle", helmetStorageCost, motorcycleStorageCostWash + motorcycleWashCost, parkingFee, totalCost);
         } else {
             System.out.println("Sorry, parking is full.");
         }
@@ -221,10 +223,13 @@ public class Parking_System {
             parkingStatus[availableSlot][1] = idxuserName - 1; // Store user index in the parking slot
             System.out.println("Car parked successfully in slot " + availableSlot);
 
+            // Calculate parking fee based on parking duration
+            double parkingFee = (CAR_PARKING_FEE);
+
             // Apply membership discount
-            double totalCost = calculateTotalCost(0, carWashCost, CAR_PARKING_FEE);
+            double totalCost = calculateTotalCost(0, carWashCost + tireInflationCost, parkingFee);
             System.out.println("Total Parking Cost: " + totalCost);
-            generateReceipt("Car", 0, carWashCost, totalCost);
+            generateReceipt("Car", 0, carWashCost + tireInflationCost, parkingFee, totalCost);
         } else {
             System.out.println("Sorry, parking is full.");
         }
@@ -256,25 +261,27 @@ public class Parking_System {
 
     private static double calculateTotalCost(double helmetCost, double washCost, double parkingFee) {
         double totalCost = helmetCost + washCost + parkingFee;
-    
+
         // Apply membership discount
         switch (membershipType[idxuserName - 1]) {
             case "vip":
-                totalCost *= 0.8; // 20% discount
+                totalCost *= 0.9; // 10% discount
                 break;
             case "reguler":
                 totalCost *= 0.85; // 15% discount
                 break;
-            case "common":
-                totalCost *= 0.9; // 10% discount
+            case "biasa":
+                totalCost *= 0.8; // 20% discount
                 break;
             // You can add more cases for other membership types if needed
         }
-    
+
         return totalCost;
     }
 
-    private static void generateReceipt(String vehicleType, double helmetCost, double washCost, double totalCost) {
+    
+
+    private static void generateReceipt(String vehicleType, double helmetCost, double washCost, double parkingFee, double totalCost) {
         System.out.println("\n=========================== RECEIPT ===========================");
         System.out.println("User Name: " + userName[idxuserName - 1]);
         System.out.println("License Plate: " + licensePlate[idxuserName - 1]);
@@ -299,37 +306,27 @@ public class Parking_System {
             System.out.println("Tire Inflation Cost: " + tireInflationCost);
         }
 
-        // Display parking fee on the receipt
-        System.out.println("Parking Fee: " + (vehicleType.equalsIgnoreCase("Motorcycle") ? MOTORCYCLE_PARKING_FEE : CAR_PARKING_FEE));
-        double totalCosts = CAR_PARKING_FEE + carWashCost + tireInflationCost  ;
-        
+        System.out.println("Parking Fee: " + parkingFee);
+        System.out.println("Total Parking Cost: " + totalCost);
 
         double discount = 0;
         switch (membershipType[idxuserName - 1]) {
             case "vip":
-                discount = 0.2; // 20% discount
+                discount = 0.1; // 10% discount
                 break;
             case "reguler":
-                discount = 0.15; // 15% discountr
+                discount = 0.15; // 15% discount
                 break;
-            case "common":
-                discount = 0.1; // 10% discount
+            case "biasa":
+                discount = 0.2; // 20% discount
                 break;
             // Add more cases for other membership types if needed
         }
 
-        double discountAmount = totalCosts * discount;
-        double finalcosts = totalCosts - discountAmount;
-        
-        System.out.println("Final Cost: " + finalcosts);
-      
-      
+        double discountAmount = totalCost * discount;
+        System.out.println("Discount Applied: " + discount * 100 + "% (" + discountAmount + ")");
         System.out.println("==============================================================\n");
     }
-
-
-
-
 
         private static final int motorcycleSpacesElectric = 40;
         private static final int carSpacesElectric = 20;
@@ -536,5 +533,5 @@ public class Parking_System {
                 return selectParkingSpace(parkingStatus);
             }
             return chosenParkingSpace - 1;
-        }//charel :)
-    }
+        }//charel :)
+}
