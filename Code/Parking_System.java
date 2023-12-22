@@ -527,11 +527,12 @@ public class Parking_System {
             Scanner input = new Scanner(System.in);
             System.out.print("Choose an available parking space (1-" + parkingStatus[0].length + "): ");
             int chosenParkingSpace = input.nextInt();
-
+    
             if (chosenParkingSpace < 1 || chosenParkingSpace > parkingStatus[0].length || parkingStatus[0][chosenParkingSpace - 1] == 1) {
                 System.out.println("Invalid choice or parking space already occupied. Please choose again.");
                 return selectParkingSpace(parkingStatus);
             }
-            return chosenParkingSpace-1;
-        }//charel :)
+    
+            return chosenParkingSpace - 1;
+        }
 }
