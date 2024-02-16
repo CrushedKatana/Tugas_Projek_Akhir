@@ -239,10 +239,10 @@ public class Parking_System {
         System.out.println("==============================================================");
         System.out.println("|                      Status Parkir                          |");
         System.out.println("==============================================================");
-        System.out.println("Slot No. | Status    | User Name      | License Plate");
+        System.out.println("|   Slot No. | Status    | User Name      | License Plate     |");
         System.out.println("==============================================================");
         for (int i = 0; i < parkingStatus.length; i++) {
-            System.out.printf("%-9d| %-10s| %-15s| %-13s%n", i,
+            System.out.printf("|%-12d| %-10s| %-15s| %-18s|%n", i,
                     (parkingStatus[i][0] == 0 ? "Empty" : "x"),
                     (parkingStatus[i][0] == 1 ? userName[parkingStatus[i][1]] : ""),
                     (parkingStatus[i][0] == 1 ? licensePlate[parkingStatus[i][1]] : ""));
