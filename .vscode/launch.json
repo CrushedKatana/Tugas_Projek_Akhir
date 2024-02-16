@@ -1,0 +1,175 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "speda$Parkir",
+            "request": "launch",
+            "mainClass": "speda$Parkir",
+            "projectName": "Tugas_Projek_Akhir_ce5f4462"
+        },
+        {
+            "type": "java",
+            "name": "Parking_System",
+            "request": "launch",
+            "mainClass": "Parking_System",
+            "projectName": "Tugas_Projek_Akhir_ce5f4462"
+        },
+        {
+            "type": "java",
+            "name": "pp",
+            "request": "launch",
+            "mainClass": "pp",
+            "projectName": "Tugas_Projek_Akhir_ce5f4462"
+        },
+        {
+            "type": "java",
+            "name": "Speda",
+            "request": "launch",
+            "mainClass": "Speda",
+            "projectName": "Tugas_Projek_Akhir_ce5f4462"
+        },
+        {
+            "type": "java",
+            "name": "speda",
+            "request": "launch",
+            "mainClass": "speda",
+            "projectName": "Tugas_Projek_Akhir_ce5f4462"
+        },
+        {
+            "type": "java",
+            "name": "MotorcyclePark",
+            "request": "launch",
+            "mainClass": "MotorcyclePark",
+            "projectName": "Tugas_Projek_Akhir_ce5f4462"
+        },
+        {
+            "type": "java",
+            "name": "electric",
+            "request": "launch",
+            "mainClass": "electric",
+            "projectName": "Tugas_Projek_Akhir_ce5f4462"
+        },
+        {
+            "type": "java",
+            "name": "sepeda$Parkir",
+            "request": "launch",
+            "mainClass": "sepeda$Parkir",
+            "projectName": "Tugas_Projek_Akhir_ce5f4462"
+        },
+        {
+            "type": "java",
+            "name": "Sistem_parkir$Parkir",
+            "request": "launch",
+            "mainClass": "Sistem_parkir$Parkir",
+            "projectName": "Tugas_Projek_Akhir_42b663c7"
+        },
+        {
+            "type": "java",
+            "name": "Sistem_parkir$Parkir",
+            "request": "launch",
+            "mainClass": "Sistem_parkir$Parkir",
+            "projectName": "Tugas_Projek_Akhir_82f2c6e9"
+        },
+        {
+            "type": "java",
+            "name": "sepeda$Parkir",
+            "request": "launch",
+            "mainClass": "sepeda$Parkir",
+            "projectName": "Tugas_Projek_Akhir_82f2c6e9"
+        },
+        {
+            "type": "java",
+            "name": "Sistem_parkir$Parkir",
+            "request": "launch",
+            "mainClass": "Sistem_parkir$Parkir",
+            "projectName": "Tugas_Projek_Akhir_ce5f4462"
+        },
+        {
+            "type": "java",
+            "name": "electric",
+            "request": "launch",
+            "mainClass": "electric",
+            "projectName": "Tugas_Projek_Akhir_82f2c6e9"
+        },
+        {
+            "type": "java",
+            "name": "Sistem_parkir",
+            "request": "launch",
+            "mainClass": "Sistem_parkir",
+            "projectName": "Tugas_Projek_Akhir_82f2c6e9"
+        },
+        {
+            "type": "java",
+            "name": "Electric",
+            "request": "launch",
+            "mainClass": "Electric",
+            "projectName": "Tugas_Projek_Akhir_f77e5ae8"
+        },
+        {
+            "type": "java",
+            "name": "sepeda",
+            "request": "launch",
+            "mainClass": "sepeda",
+            "projectName": "Tugas_Projek_Akhir_f77e5ae8"
+        },
+        {
+            "type": "java",
+            "name": "car",
+            "request": "launch",
+            "mainClass": "car",
+            "projectName": "Tugas_Projek_Akhir_f77e5ae8"
+        },
+        {
+            "type": "java",
+            "name": "electric",
+            "request": "launch",
+            "mainClass": "electric",
+            "projectName": "Tugas_Projek_Akhir_f77e5ae8"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Sistem_parkir",
+            "request": "launch",
+            "mainClass": "Sistem_parkir",
+            "projectName": "Tugas_Projek_Akhir_42b663c7"
+        },
+        {
+            "type": "java",
+            "name": "car",
+            "request": "launch",
+            "mainClass": "car",
+            "projectName": "Tugas_Projek_Akhir_42b663c7"
+        },
+        {
+            "type": "java",
+            "name": "electric",
+            "request": "launch",
+            "mainClass": "electric",
+            "projectName": "Tugas_Projek_Akhir_42b663c7"
+        },
+        {
+            "type": "java",
+            "name": "motorcycle",
+            "request": "launch",
+            "mainClass": "motorcycle",
+            "projectName": "Tugas_Projek_Akhir_42b663c7"
+        },
+        {
+            "type": "java",
+            "name": "sepeda",
+            "request": "launch",
+            "mainClass": "sepeda",
+            "projectName": "Tugas_Projek_Akhir_42b663c7"
+        }
+    ]
+}
